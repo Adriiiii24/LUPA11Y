@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, utimes } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, utimes } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { after, describe, it } from 'node:test';
 import { makeFinding, makeReport } from '../../../../packages/core/test/helpers/fixtures.ts';
 import { clientKey, createGate, gateConfig } from '../../lib/server/audit-gate.ts';
+import { siteUrl } from '../../lib/site.ts';
 import { externalizeImages, imageIndex, imageKey, imageResponse, KEY_PATTERN } from '../../lib/server/report-images.ts';
 import { createFileStore } from '../../lib/server/report-store.ts';
 
@@ -116,5 +118,25 @@ describe('almacén de informes', () => {
     const past = new Date(Date.now() - 120_000);
     await utimes(join(dir, `${old}.json`), past, past);
     assert.equal(await createFileStore(dir, 60_000).load(old), null, 'caducado');
+  });
+});
+
+describe('Chromium de Vercel', () => {
+  it('es de la misma versión mayor que el de Playwright', async () => {
+    const require = createRequire(import.meta.url);
+    const playwrightDir = dirname(require.resolve('playwright-core'));
+    const browsers = JSON.parse(await readFile(join(playwrightDir, 'browsers.json'), 'utf8')) as { browsers: Array<{ name: string; browserVersion: string }> };
+    const playwrightChromium = browsers.browsers.find((browser) => browser.name === 'chromium')?.browserVersion ?? '';
+    const sparticuz = JSON.parse(await readFile(join(dirname(require.resolve('@sparticuz/chromium')), '..', 'package.json'), 'utf8')) as { version: string };
+    assert.equal(sparticuz.version.split('.')[0], playwrightChromium.split('.')[0], 'al subir Playwright, sube @sparticuz/chromium a la misma versión mayor');
+  });
+});
+
+describe('origen del sitio', () => {
+  it('manda LUPA11Y_SITE_URL; en Vercel, si falta, el dominio de producción; si no, localhost', () => {
+    assert.equal(siteUrl({ LUPA11Y_SITE_URL: 'https://lupa.example', VERCEL_PROJECT_PRODUCTION_URL: 'lupa11y.vercel.app' }).origin, 'https://lupa.example');
+    assert.equal(siteUrl({ VERCEL_PROJECT_PRODUCTION_URL: 'lupa11y.vercel.app' }).origin, 'https://lupa11y.vercel.app');
+    assert.equal(siteUrl({}).origin, 'http://localhost:3000');
+    assert.equal(siteUrl({ LUPA11Y_SITE_URL: 'no es una url' }).origin, 'http://localhost:3000');
   });
 });

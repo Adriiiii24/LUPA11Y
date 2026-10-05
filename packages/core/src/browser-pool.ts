@@ -33,8 +33,15 @@ interface Slot {
   retired: boolean;
 }
 
-export function createBrowserPool(options: { launch?: LaunchOptions; maxUses?: number } = {}): BrowserPool {
+export interface BrowserPoolOptions {
+  /** Opciones de arranque; una función si hay que prepararlas antes (p. ej., descomprimir el binario). */
+  launch?: LaunchOptions | (() => Promise<LaunchOptions>);
+  maxUses?: number;
+}
+
+export function createBrowserPool(options: BrowserPoolOptions = {}): BrowserPool {
   const maxUses = options.maxUses ?? 40;
+  const launchOptions = async (): Promise<LaunchOptions> => (typeof options.launch === 'function' ? options.launch() : (options.launch ?? {}));
   let current: Slot | null = null;
   const slots = new Set<Slot>();
 
@@ -49,7 +56,7 @@ export function createBrowserPool(options: { launch?: LaunchOptions; maxUses?: n
 
   const launch = (): Slot => {
     const slot: Slot = {
-      browser: chromium.launch({ headless: true, ...options.launch }).catch((cause: unknown) => {
+      browser: launchOptions().then((launch) => chromium.launch({ headless: true, ...launch })).catch((cause: unknown) => {
         retire(slot);
         throw new AuditError('browser_unavailable', 'No se pudo arrancar Chromium. Instálalo con «npx playwright install chromium».', { cause });
       }),
@@ -74,9 +81,10 @@ export function createBrowserPool(options: { launch?: LaunchOptions; maxUses?: n
       const slot = current;
       slot.uses += 1;
       slot.active += 1;
+      // Un navegador que ya agotó sus usos se jubila al soltarlo, no en la siguiente auditoría.
       const done = () => {
         slot.active -= 1;
-        if (slot.retired && slot.active === 0) retire(slot);
+        if (slot.retired || slot.uses >= maxUses) retire(slot);
       };
       let browser: Browser;
       try {

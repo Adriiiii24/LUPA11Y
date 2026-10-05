@@ -120,4 +120,25 @@ describe('pool de navegadores', () => {
     await pool.close();
     assert.equal(third.browser.isConnected(), false);
   });
+
+  it('prepara las opciones de arranque con una función y cierra al soltar el último uso', async () => {
+    let prepared = 0;
+    const pool = createBrowserPool({
+      maxUses: 1,
+      launch: async () => {
+        prepared += 1;
+        return { args: ['--lang=es'] };
+      },
+    });
+    const first = await pool.acquire();
+    assert.equal(prepared, 1);
+    first.release();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    assert.equal(first.browser.isConnected(), false, 'con maxUses 1, cada auditoría tiene su propio Chromium');
+    const second = await pool.acquire();
+    assert.equal(prepared, 2);
+    assert.notEqual(second.browser, first.browser);
+    second.release();
+    await pool.close();
+  });
 });

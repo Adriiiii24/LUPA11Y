@@ -53,7 +53,7 @@ axe-core, Lighthouse y WAVE solo leen el DOM. LupA11y además **recorre** la pá
 - La web pública solo audita hosts públicos (con protección contra SSRF). La CLI y el MCP pueden auditar `localhost`, porque corren en la máquina del usuario.
 - Sin `GEMINI_API_KEY`, la fase de visión se marca como omitida y el resto del informe sigue siendo válido.
 - Límite honesto: una auditoría automática no certifica el cumplimiento. Detecta una parte de los problemas y el resto requiere revisión humana.
-- Queda por decidir dónde se despliega. Hay un `Dockerfile` listo y es la opción recomendada, porque la API es un proceso de larga vida (navegador compartido, cuota en memoria, streaming). Vercel exigiría Chromium serverless y llevar la cuota y los informes guardados a servicios externos.
+- Despliegue: la web pública va en Vercel (plan gratuito), con el Chromium de `@sparticuz/chromium`, la cuota en memoria de cada instancia y sin enlaces permanentes. El `Dockerfile` sigue listo para un contenedor de larga vida (navegador compartido y enlaces en un volumen).
 - Los paquetes (`@lupa11y/core`, `@lupa11y/cli`, `@lupa11y/mcp`) están listos para publicarse en npm; publicarlos es decisión y cuenta del autor.
 - La interfaz y los mensajes del motor siguen en español (compromiso de marca). Una versión en inglés para el mercado europeo amplio queda como decisión pendiente.
 

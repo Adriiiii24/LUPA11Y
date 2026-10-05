@@ -3,7 +3,7 @@
  * `@lupa11y/core/schema`, `@lupa11y/core/format`, `@lupa11y/core/compare` y `@lupa11y/core/sarif`.
  */
 export { audit, type AuditOptions } from './audit.ts';
-export { createBrowserPool, PUBLIC_BROWSER_ARGS, type BrowserLease, type BrowserPool } from './browser-pool.ts';
+export { createBrowserPool, PUBLIC_BROWSER_ARGS, type BrowserLease, type BrowserPool, type BrowserPoolOptions } from './browser-pool.ts';
 export { startEgressProxy, type EgressProxy } from './egress-proxy.ts';
 export { AuditError, isAuditError } from './errors.ts';
 export { assertPublicHost, parseAuditUrl, resolvePublic, type NetworkPolicy } from './network-guard.ts';

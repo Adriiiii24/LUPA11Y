@@ -4,7 +4,9 @@ const config: NextConfig = {
   // El motor se consume como TypeScript fuente del workspace.
   transpilePackages: ['@lupa11y/core'],
   // Playwright y axe leen ficheros propios en tiempo de ejecución: no se empaquetan.
-  serverExternalPackages: ['playwright', 'playwright-core', '@axe-core/playwright', 'axe-core', '@google/genai'],
+  serverExternalPackages: ['playwright', 'playwright-core', '@axe-core/playwright', 'axe-core', '@google/genai', '@sparticuz/chromium'],
+  // El Chromium de Vercel va comprimido en bin/ y se lee en tiempo de ejecución: el trazado no lo ve solo.
+  outputFileTracingIncludes: { '/api/audit': ['../../node_modules/@sparticuz/chromium/bin/**'] },
   poweredByHeader: false,
   async rewrites() {
     return [{ source: '/demo', destination: '/demo/index.html' }];

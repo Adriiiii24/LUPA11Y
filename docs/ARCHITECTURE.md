@@ -202,7 +202,8 @@ La CI, además, se audita a sí misma con la propia Action, construye y arranca 
 ## 9. Distribución y despliegue
 
 - **npm.** `npm run pack:packages` compila los tres paquetes a JavaScript con sus `.d.ts`, escribe un `package.json` de publicación que apunta a `dist`, genera los tarballs y los instala en un directorio vacío para comprobar que la CLI, la API del motor y el servidor MCP arrancan. Hace falta porque Node no quita tipos dentro de `node_modules`.
-- **Contenedor.** El `Dockerfile` construye la web con su Chromium y la arranca en `public-only`, con los enlaces permanentes en un volumen (`/data`). Es el modelo que encaja con la API: un proceso de larga vida con navegador compartido, cuota en memoria y streaming. En plataformas serverless, el pool, la cuota y el almacén en disco habría que llevarlos a servicios externos.
+- **Contenedor.** El `Dockerfile` construye la web con su Chromium y la arranca en `public-only`, con los enlaces permanentes en un volumen (`/data`). Es el modelo que encaja con la API: un proceso de larga vida con navegador compartido, cuota en memoria y streaming.
+- **Vercel (plan gratuito).** La landing se sirve estática y `/api/audit` corre como función con el Chromium de `@sparticuz/chromium`, de la misma versión mayor que el de Playwright (un test lo vigila). De sus argumentos se quitan los que relajan la seguridad web (`--disable-web-security`, `--allow-running-insecure-content`). Ese Chromium corre en un solo proceso, así que cada auditoría arranca uno nuevo (`maxUses: 1`). La cuota vive en la memoria de cada instancia y usa `x-real-ip`; los enlaces permanentes quedan desactivados, porque el disco no persiste. El origen público sale de `VERCEL_PROJECT_PRODUCTION_URL` si no se declara `LUPA11Y_SITE_URL`.
 
 ## 10. Desviaciones del brief
 

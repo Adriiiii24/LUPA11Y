@@ -14,6 +14,7 @@
  * compartido (Redis, Upstash…).
  */
 import { createBrowserPool, PUBLIC_BROWSER_ARGS, type BrowserPool } from '@lupa11y/core';
+import type { LaunchOptions } from 'playwright';
 
 const WINDOW_MS = 10 * 60_000;
 
@@ -109,8 +110,28 @@ export function createGate(config: GateConfig): Gate {
 
 let pool: BrowserPool | null = null;
 
-/** Un Chromium por proceso, con WebRTC limitado al proxy; cada auditoría abre su propio contexto. */
+/** Flags de `@sparticuz/chromium` que relajan la seguridad web: no se usan con páginas ajenas. */
+const UNSAFE_SERVERLESS_ARGS = new Set(['--disable-web-security', '--allow-running-insecure-content']);
+
+/**
+ * En Vercel no hay Chromium del sistema: se descomprime el de `@sparticuz/chromium`, de la misma
+ * versión que el de Playwright (un test lo vigila).
+ */
+async function serverlessLaunch(): Promise<LaunchOptions> {
+  const { default: chromium } = await import('@sparticuz/chromium');
+  return {
+    executablePath: await chromium.executablePath(),
+    args: [...chromium.args.filter((arg) => !UNSAFE_SERVERLESS_ARGS.has(arg)), ...PUBLIC_BROWSER_ARGS],
+  };
+}
+
+/**
+ * Un Chromium por proceso, con WebRTC limitado al proxy; cada auditoría abre su propio contexto.
+ * En Vercel, ese Chromium corre en un solo proceso: cada auditoría arranca uno nuevo.
+ */
 export function browserPool(): BrowserPool {
-  pool ??= createBrowserPool({ launch: { args: PUBLIC_BROWSER_ARGS } });
+  pool ??= process.env['VERCEL']
+    ? createBrowserPool({ launch: serverlessLaunch, maxUses: 1 })
+    : createBrowserPool({ launch: { args: PUBLIC_BROWSER_ARGS } });
   return pool;
 }

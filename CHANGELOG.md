@@ -4,6 +4,18 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Versione
 
 La GitHub Action se usa por su etiqueta mayor (`Adriiiii24/LupA11y@v0`), que siempre apunta a la última 0.x.
 
+## Sin publicar
+
+### Añadido
+- **Despliegue en Vercel (plan gratuito)**: la API usa el Chromium de `@sparticuz/chromium`, de la misma versión mayor que el de Playwright (un test lo vigila), sin sus argumentos que relajan la seguridad web. El origen público sale de `VERCEL_PROJECT_PRODUCTION_URL` si no se declara `LUPA11Y_SITE_URL`.
+- `createBrowserPool` acepta las opciones de arranque como función asíncrona.
+
+### Cambiado
+- El pool jubila el navegador en cuanto agota sus usos, no en la siguiente auditoría.
+- La muestra de la landing enseña la `/demo` del propio despliegue, no la de la máquina donde se generó.
+- El `Dockerfile` ya no declara `VOLUME` (Railway lo rechaza) ni lleva el Chromium de Vercel.
+- CI: los tipos de Next se generan antes del typecheck; `actions/cache` v6 y `upload-artifact` v7, que corren en Node 24.
+
 ## [0.2.0] · 2026-10-05
 
 ### Añadido

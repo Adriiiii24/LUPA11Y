@@ -28,7 +28,8 @@ FROM deps AS build
 COPY tsconfig.base.json ./
 COPY packages packages
 COPY apps/web apps/web
-RUN npm run build && npm prune --omit=dev --no-audit --no-fund
+# @sparticuz/chromium es el Chromium de Vercel; aquí se instala el de Playwright.
+RUN npm run build && npm prune --omit=dev --no-audit --no-fund && rm -rf node_modules/@sparticuz
 
 FROM node:24-bookworm-slim AS runtime
 ENV NODE_ENV=production \
