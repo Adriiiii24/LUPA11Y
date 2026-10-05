@@ -92,7 +92,7 @@ runs:
 
     - name: Caché de Chromium
       id: chromium-cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ~/.cache/ms-playwright
         key: lupa11y-chromium-${{ runner.os }}-${{ steps.install.outputs.playwright }}

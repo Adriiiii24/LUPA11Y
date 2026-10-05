@@ -64,7 +64,7 @@ Códigos de salida: `0` sin hallazgos por encima del umbral, `1` con hallazgos y
     sarif-path: lupa11y.sarif
     comment-pr: true              # necesita permissions: pull-requests: write
     gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
-- uses: github/codeql-action/upload-sarif@v3
+- uses: github/codeql-action/upload-sarif@v4
   if: always()
   with:
     sarif_file: lupa11y.sarif     # necesita permissions: security-events: write

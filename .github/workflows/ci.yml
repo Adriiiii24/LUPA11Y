@@ -21,7 +21,7 @@ jobs:
       - run: npm ci
       - name: Caché de Chromium
         id: chromium-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -61,7 +61,7 @@ jobs:
           gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
       - name: Guardar el informe
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lupa11y-autoauditoria
           path: |
