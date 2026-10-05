@@ -1,0 +1,21 @@
+{
+  "name": "@lupa11y/core",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Motor de LupA11y: axe-core + agente de teclado + Gemini Vision sobre Playwright, con contrato Zod.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema.ts",
+    "./format": "./src/format.ts",
+    "./compare": "./src/compare.ts",
+    "./sarif": "./src/sarif.ts"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@google/genai": "^2.24.0",
+    "axe-core": "^4.13.0",
+    "playwright": "^1.63.0",
+    "zod": "^4.6.5"
+  }
+}

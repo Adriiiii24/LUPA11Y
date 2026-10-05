@@ -1,0 +1,8 @@
+# Finales de línea LF en el repositorio, venga de donde venga el fichero (el proyecto se edita en Windows).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.tgz binary

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" width="360" height="260">
+  <!-- Ilustración sintética de LupA11y para la demo: cafetera de filtro de vidrio (tipo Chemex) con collar de madera. -->
+  <rect width="360" height="260" fill="#dfe6e2"/>
+  <ellipse cx="180" cy="232" rx="76" ry="10" fill="#bccac3"/>
+  <path d="M120 30 H240 L196 118 L240 222 H120 L164 118 Z" fill="#f4f8f6" stroke="#9fb3aa" stroke-width="3"/>
+  <path d="M136 172 L164 118 L196 118 L224 172 L236 218 H124 Z" fill="#6b3f26" opacity="0.85"/>
+  <path d="M150 100 L210 100 L200 136 L160 136 Z" fill="#b07a52"/>
+  <path d="M154 112 H206" stroke="#8a5a3a" stroke-width="3"/>
+  <circle cx="180" cy="120" r="5" fill="#5a3421"/>
+  <path d="M120 30 L134 18 H226 L240 30" fill="none" stroke="#9fb3aa" stroke-width="3"/>
+</svg>

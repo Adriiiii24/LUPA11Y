@@ -1,0 +1,31 @@
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Salidas locales de la CLI
+lupa11y-report.json
+lupa11y-summary.md
+
+# Entorno
+.env
+.env.*
+!.env.example
+
+# Impeccable: estado de trabajo, no fuente
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/config.local.json
+.impeccable/questions/
+
+.DS_Store
+Thumbs.db
+
+# Paquetes compilados para publicar (npm run pack:packages)
+.pack/
+
+# Ajustes personales de Claude Code
+.claude/settings.local.json

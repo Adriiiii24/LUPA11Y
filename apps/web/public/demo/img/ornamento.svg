@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" width="360" height="120">
+  <!-- Ilustración sintética de LupA11y para la demo: adorno lineal de ramas de cafeto, sin información. -->
+  <path d="M20 60 C80 30 120 90 180 60 S280 30 340 60" fill="none" stroke="#6b7f3a" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#6b7f3a">
+    <path d="M70 48 q14 -22 32 -12 q-14 22 -32 12 z"/>
+    <path d="M128 72 q14 22 32 12 q-14 -22 -32 -12 z"/>
+    <path d="M226 46 q14 -22 32 -12 q-14 22 -32 12 z"/>
+    <path d="M286 70 q14 22 32 12 q-14 -22 -32 -12 z"/>
+  </g>
+  <g fill="#b3261e">
+    <circle cx="100" cy="64" r="6"/>
+    <circle cx="112" cy="68" r="6"/>
+    <circle cx="200" cy="52" r="6"/>
+    <circle cx="212" cy="56" r="6"/>
+    <circle cx="262" cy="62" r="6"/>
+  </g>
+</svg>

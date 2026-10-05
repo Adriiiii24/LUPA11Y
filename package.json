@@ -1,0 +1,30 @@
+{
+  "name": "lupa11y",
+  "private": true,
+  "type": "module",
+  "description": "Agentic Accessibility Auditing: Deterministic Precision meets Visual Intelligence.",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24.11"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @lupa11y/web",
+    "build": "npm run build -w @lupa11y/web",
+    "start": "npm run start -w @lupa11y/web",
+    "typecheck": "tsc -p packages/core && tsc -p packages/cli && tsc -p packages/mcp && npm run typecheck -w @lupa11y/web",
+    "lint": "npm run lint -w @lupa11y/web",
+    "test": "node --test \"packages/*/test/**/*.test.ts\" \"apps/web/test/unit/**/*.test.ts\"",
+    "test:web": "node --test --test-timeout=300000 \"apps/web/test/e2e/**/*.test.ts\"",
+    "audit": "node packages/cli/src/main.ts",
+    "sample": "node apps/web/scripts/generate-sample.ts",
+    "pack:packages": "node scripts/pack-packages.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  }
+}

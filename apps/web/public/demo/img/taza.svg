@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" width="360" height="260">
+  <!-- Ilustración sintética de LupA11y para la demo: taza de café con plato, vista de lado. -->
+  <rect width="360" height="260" fill="#f1e2cf"/>
+  <ellipse cx="180" cy="214" rx="118" ry="16" fill="#d9c2a6"/>
+  <ellipse cx="180" cy="208" rx="112" ry="13" fill="#fbf6ef"/>
+  <path d="M104 96 H256 L244 196 Q240 206 228 206 H132 Q120 206 116 196 Z" fill="#fbf6ef"/>
+  <path d="M256 116 Q300 116 298 148 Q296 178 250 176" fill="none" stroke="#fbf6ef" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="180" cy="96" rx="76" ry="12" fill="#5a3421"/>
+  <ellipse cx="180" cy="95" rx="60" ry="7" fill="#8a5a3a"/>
+  <path d="M154 64 Q146 50 158 38 M180 60 Q172 44 184 30 M206 64 Q198 50 210 38" fill="none" stroke="#c8ab8c" stroke-width="4" stroke-linecap="round"/>
+</svg>

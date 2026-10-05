@@ -1,0 +1,760 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T18:39:26.802Z",
+  "title": "Design System: LupA11y",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Zinc profundo",
+        "canonical": "oklch(14.1% 0.004 285.8)",
+        "tonalRamp": [
+          "oklch(15% 0.002 285.8)",
+          "oklch(25% 0.004 285.8)",
+          "oklch(35% 0.004 285.8)",
+          "oklch(45% 0.004 285.8)",
+          "oklch(55% 0.004 285.8)",
+          "oklch(65% 0.004 285.8)",
+          "oklch(80% 0.004 285.8)",
+          "oklch(95% 0.002 285.8)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Zinc elevado",
+        "canonical": "oklch(17.9% 0.004 286)",
+        "tonalRamp": [
+          "oklch(15% 0.002 286)",
+          "oklch(25% 0.004 286)",
+          "oklch(35% 0.004 286)",
+          "oklch(45% 0.004 286)",
+          "oklch(55% 0.004 286)",
+          "oklch(65% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(95% 0.002 286)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie de lente",
+        "canonical": "oklch(21% 0.006 285.9)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285.9)",
+          "oklch(25% 0.006 285.9)",
+          "oklch(35% 0.006 285.9)",
+          "oklch(45% 0.006 285.9)",
+          "oklch(55% 0.006 285.9)",
+          "oklch(65% 0.006 285.9)",
+          "oklch(80% 0.006 285.9)",
+          "oklch(95% 0.004 285.9)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Superficie pulsada",
+        "canonical": "oklch(24.1% 0.008 285.8)",
+        "tonalRamp": [
+          "oklch(15% 0.005 285.8)",
+          "oklch(25% 0.008 285.8)",
+          "oklch(35% 0.008 285.8)",
+          "oklch(45% 0.008 285.8)",
+          "oklch(55% 0.008 285.8)",
+          "oklch(65% 0.008 285.8)",
+          "oklch(80% 0.008 285.8)",
+          "oklch(95% 0.005 285.8)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Blanco de lectura",
+        "canonical": "oklch(98.5% 0 0)"
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Zinc claro",
+        "canonical": "oklch(77.2% 0.011 286.1)",
+        "tonalRamp": [
+          "oklch(15% 0.007 286.1)",
+          "oklch(25% 0.011 286.1)",
+          "oklch(35% 0.011 286.1)",
+          "oklch(45% 0.011 286.1)",
+          "oklch(55% 0.011 286.1)",
+          "oklch(65% 0.011 286.1)",
+          "oklch(80% 0.011 286.1)",
+          "oklch(95% 0.007 286.1)"
+        ]
+      },
+      "iris": {
+        "role": "primary",
+        "displayName": "Verde",
+        "canonical": "oklch(81.8% 0.207 141.3)",
+        "tonalRamp": [
+          "oklch(15% 0.124 141.3)",
+          "oklch(25% 0.207 141.3)",
+          "oklch(35% 0.207 141.3)",
+          "oklch(45% 0.207 141.3)",
+          "oklch(55% 0.207 141.3)",
+          "oklch(65% 0.207 141.3)",
+          "oklch(80% 0.207 141.3)",
+          "oklch(95% 0.124 141.3)"
+        ]
+      },
+      "iris-strong": {
+        "role": "primary",
+        "displayName": "Iris claro",
+        "canonical": "oklch(92.7% 0.099 137.2)",
+        "tonalRamp": [
+          "oklch(15% 0.059 137.2)",
+          "oklch(25% 0.099 137.2)",
+          "oklch(35% 0.099 137.2)",
+          "oklch(45% 0.099 137.2)",
+          "oklch(55% 0.099 137.2)",
+          "oklch(65% 0.099 137.2)",
+          "oklch(80% 0.099 137.2)",
+          "oklch(95% 0.059 137.2)"
+        ]
+      },
+      "cta": {
+        "role": "primary",
+        "displayName": "Luz de botón",
+        "canonical": "oklch(87.8% 0.158 140.1)",
+        "tonalRamp": [
+          "oklch(15% 0.095 140.1)",
+          "oklch(25% 0.158 140.1)",
+          "oklch(35% 0.158 140.1)",
+          "oklch(45% 0.158 140.1)",
+          "oklch(55% 0.158 140.1)",
+          "oklch(65% 0.158 140.1)",
+          "oklch(80% 0.158 140.1)",
+          "oklch(95% 0.095 140.1)"
+        ]
+      },
+      "cta-hover": {
+        "role": "primary",
+        "displayName": "Luz de botón encendida",
+        "canonical": "oklch(91.0% 0.119 139.2)",
+        "tonalRamp": [
+          "oklch(15% 0.072 139.2)",
+          "oklch(25% 0.119 139.2)",
+          "oklch(35% 0.119 139.2)",
+          "oklch(45% 0.119 139.2)",
+          "oklch(55% 0.119 139.2)",
+          "oklch(65% 0.119 139.2)",
+          "oklch(80% 0.119 139.2)",
+          "oklch(95% 0.072 139.2)"
+        ]
+      },
+      "on-cta": {
+        "role": "neutral",
+        "displayName": "Zinc sobre luz",
+        "canonical": "oklch(14.1% 0.004 285.8)"
+      },
+      "sev-low": {
+        "role": "primary",
+        "displayName": "Severidad baja",
+        "canonical": "oklch(56.1% 0.143 145.8)",
+        "tonalRamp": [
+          "oklch(15% 0.086 145.8)",
+          "oklch(25% 0.143 145.8)",
+          "oklch(35% 0.143 145.8)",
+          "oklch(45% 0.143 145.8)",
+          "oklch(55% 0.143 145.8)",
+          "oklch(65% 0.143 145.8)",
+          "oklch(80% 0.143 145.8)",
+          "oklch(95% 0.086 145.8)"
+        ]
+      },
+      "sev-medium": {
+        "role": "primary",
+        "displayName": "Severidad media",
+        "canonical": "oklch(68.1% 0.172 144.9)",
+        "tonalRamp": [
+          "oklch(15% 0.103 144.9)",
+          "oklch(25% 0.172 144.9)",
+          "oklch(35% 0.172 144.9)",
+          "oklch(45% 0.172 144.9)",
+          "oklch(55% 0.172 144.9)",
+          "oklch(65% 0.172 144.9)",
+          "oklch(80% 0.172 144.9)",
+          "oklch(95% 0.103 144.9)"
+        ]
+      },
+      "sev-high": {
+        "role": "primary",
+        "displayName": "Severidad alta",
+        "canonical": "oklch(81.8% 0.207 141.3)",
+        "tonalRamp": [
+          "oklch(15% 0.124 141.3)",
+          "oklch(25% 0.207 141.3)",
+          "oklch(35% 0.207 141.3)",
+          "oklch(45% 0.207 141.3)",
+          "oklch(55% 0.207 141.3)",
+          "oklch(65% 0.207 141.3)",
+          "oklch(80% 0.207 141.3)",
+          "oklch(95% 0.124 141.3)"
+        ]
+      },
+      "sev-critical": {
+        "role": "primary",
+        "displayName": "Severidad crítica",
+        "canonical": "oklch(92.7% 0.099 137.2)",
+        "tonalRamp": [
+          "oklch(15% 0.059 137.2)",
+          "oklch(25% 0.099 137.2)",
+          "oklch(35% 0.099 137.2)",
+          "oklch(45% 0.099 137.2)",
+          "oklch(55% 0.099 137.2)",
+          "oklch(65% 0.099 137.2)",
+          "oklch(80% 0.099 137.2)",
+          "oklch(95% 0.059 137.2)"
+        ]
+      },
+      "capture-ink": {
+        "role": "neutral",
+        "displayName": "Tinta de captura",
+        "canonical": "oklch(14.1% 0.004 285.8)"
+      },
+      "capture-mark": {
+        "role": "primary",
+        "displayName": "Marca de captura (cajas)",
+        "canonical": "oklch(51.3% 0.160 255.7)",
+        "tonalRamp": [
+          "oklch(15% 0.096 255.7)",
+          "oklch(25% 0.160 255.7)",
+          "oklch(35% 0.160 255.7)",
+          "oklch(45% 0.160 255.7)",
+          "oklch(55% 0.160 255.7)",
+          "oklch(65% 0.160 255.7)",
+          "oklch(80% 0.160 255.7)",
+          "oklch(95% 0.096 255.7)"
+        ]
+      },
+      "capture-glow": {
+        "role": "primary",
+        "displayName": "Resplandor de captura",
+        "canonical": "oklch(81.8% 0.207 141.3)"
+      },
+      "azure": {
+        "role": "primary",
+        "displayName": "Azul",
+        "canonical": "oklch(77.0% 0.120 230.3)",
+        "tonalRamp": [
+          "oklch(15% 0.072 230.3)",
+          "oklch(25% 0.120 230.3)",
+          "oklch(35% 0.120 230.3)",
+          "oklch(45% 0.120 230.3)",
+          "oklch(55% 0.120 230.3)",
+          "oklch(65% 0.120 230.3)",
+          "oklch(80% 0.120 230.3)",
+          "oklch(95% 0.072 230.3)"
+        ]
+      },
+      "azure-strong": {
+        "role": "primary",
+        "displayName": "Azul claro",
+        "canonical": "oklch(91.3% 0.053 229.1)",
+        "tonalRamp": [
+          "oklch(15% 0.032 229.1)",
+          "oklch(25% 0.053 229.1)",
+          "oklch(35% 0.053 229.1)",
+          "oklch(45% 0.053 229.1)",
+          "oklch(55% 0.053 229.1)",
+          "oklch(65% 0.053 229.1)",
+          "oklch(80% 0.053 229.1)",
+          "oklch(95% 0.032 229.1)"
+        ]
+      },
+      "azure-deep": {
+        "role": "primary",
+        "displayName": "Azul hondo",
+        "canonical": "oklch(62.2% 0.113 240.0)",
+        "tonalRamp": [
+          "oklch(15% 0.068 240.0)",
+          "oklch(25% 0.113 240.0)",
+          "oklch(35% 0.113 240.0)",
+          "oklch(45% 0.113 240.0)",
+          "oklch(55% 0.113 240.0)",
+          "oklch(65% 0.113 240.0)",
+          "oklch(80% 0.113 240.0)",
+          "oklch(95% 0.068 240.0)"
+        ]
+      },
+      "cta-from": {
+        "role": "primary",
+        "displayName": "Luz de botón, extremo azul",
+        "canonical": "oklch(85.5% 0.086 223.9)",
+        "tonalRamp": [
+          "oklch(15% 0.052 223.9)",
+          "oklch(25% 0.086 223.9)",
+          "oklch(35% 0.086 223.9)",
+          "oklch(45% 0.086 223.9)",
+          "oklch(55% 0.086 223.9)",
+          "oklch(65% 0.086 223.9)",
+          "oklch(80% 0.086 223.9)",
+          "oklch(95% 0.052 223.9)"
+        ]
+      },
+      "cta-hover-from": {
+        "role": "primary",
+        "displayName": "Luz de botón en hover, extremo azul",
+        "canonical": "oklch(91.3% 0.056 219.0)",
+        "tonalRamp": [
+          "oklch(15% 0.034 219.0)",
+          "oklch(25% 0.056 219.0)",
+          "oklch(35% 0.056 219.0)",
+          "oklch(45% 0.056 219.0)",
+          "oklch(55% 0.056 219.0)",
+          "oklch(65% 0.056 219.0)",
+          "oklch(80% 0.056 219.0)",
+          "oklch(95% 0.034 219.0)"
+        ]
+      },
+      "capture-stitch": {
+        "role": "primary",
+        "displayName": "Costura de captura",
+        "canonical": "oklch(77.0% 0.120 230.3)",
+        "tonalRamp": [
+          "oklch(15% 0.072 230.3)",
+          "oklch(25% 0.120 230.3)",
+          "oklch(35% 0.120 230.3)",
+          "oklch(45% 0.120 230.3)",
+          "oklch(55% 0.120 230.3)",
+          "oklch(65% 0.120 230.3)",
+          "oklch(80% 0.120 230.3)",
+          "oklch(95% 0.072 230.3)"
+        ]
+      },
+      "capture-route": {
+        "role": "primary",
+        "displayName": "Ruta de captura",
+        "canonical": "oklch(50.6% 0.151 145.5)",
+        "tonalRamp": [
+          "oklch(15% 0.090 145.5)",
+          "oklch(25% 0.151 145.5)",
+          "oklch(35% 0.151 145.5)",
+          "oklch(45% 0.151 145.5)",
+          "oklch(55% 0.151 145.5)",
+          "oklch(65% 0.151 145.5)",
+          "oklch(80% 0.151 145.5)",
+          "oklch(95% 0.090 145.5)"
+        ]
+      },
+      "pupil": {
+        "role": "neutral",
+        "displayName": "Pupila",
+        "canonical": "oklch(15.9% 0.011 268.0)",
+        "tonalRamp": [
+          "oklch(15% 0.007 268.0)",
+          "oklch(25% 0.011 268.0)",
+          "oklch(35% 0.011 268.0)",
+          "oklch(45% 0.011 268.0)",
+          "oklch(55% 0.011 268.0)",
+          "oklch(65% 0.011 268.0)",
+          "oklch(80% 0.011 268.0)",
+          "oklch(95% 0.007 268.0)"
+        ]
+      },
+      "pupil-rim": {
+        "role": "neutral",
+        "displayName": "Borde de pupila",
+        "canonical": "oklch(27.4% 0.040 217.3)",
+        "tonalRamp": [
+          "oklch(15% 0.024 217.3)",
+          "oklch(25% 0.040 217.3)",
+          "oklch(35% 0.040 217.3)",
+          "oklch(45% 0.040 217.3)",
+          "oklch(55% 0.040 217.3)",
+          "oklch(65% 0.040 217.3)",
+          "oklch(80% 0.040 217.3)",
+          "oklch(95% 0.024 217.3)"
+        ]
+      },
+      "teal-shade": {
+        "role": "neutral",
+        "displayName": "Sombra turquesa de la lente",
+        "canonical": "oklch(58.5% 0.101 176.5)",
+        "tonalRamp": [
+          "oklch(15% 0.061 176.5)",
+          "oklch(25% 0.101 176.5)",
+          "oklch(35% 0.101 176.5)",
+          "oklch(45% 0.101 176.5)",
+          "oklch(55% 0.101 176.5)",
+          "oklch(65% 0.101 176.5)",
+          "oklch(80% 0.101 176.5)",
+          "oklch(95% 0.061 176.5)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Solo el H1, en dos líneas; la segunda en text-muted con «Tab.» en iris-strong."
+      },
+      "display-close": {
+        "displayName": "Display de cierre",
+        "purpose": "H2 dentro de la esfera del cierre."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "H2 de cada sección."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de fase."
+      },
+      "title-sm": {
+        "displayName": "Title pequeño",
+        "purpose": "Título del comprobador."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Entradillas en text-muted; 1.25rem en el hero desde 640 px."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto base."
+      },
+      "ui": {
+        "displayName": "UI",
+        "purpose": "Navegación, pestañas, opciones y botones de la cabecera."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etiquetas de campo, ayudas, leyendas y metadatos."
+      },
+      "data-core": {
+        "displayName": "Data core",
+        "purpose": "Total de hallazgos en el núcleo de los anillos."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "URLs, selectores, tiempos, recuentos y números de hallazgo y parada."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Bloques de código y diffs, 24 px de interlínea."
+      }
+    },
+    "shadows": [
+      {
+        "name": "canto",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.07), inset 0 0 0 1px rgb(255 255 255 / 0.055)",
+        "purpose": "Borde interior de toda superficie, pastilla y lista de pestañas (utilidad shine)."
+      },
+      {
+        "name": "canto-fuerte",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 1px rgb(255 255 255 / 0.09), 0 24px 60px -32px rgb(0 0 0 / 0.9)",
+        "purpose": "Lo que flota: cabecera, comprobador, panel de fase (shine-strong)."
+      },
+      {
+        "name": "esfera",
+        "value": "background: radial-gradient(120% 120% at 28% 18%, rgb(255 255 255 / 0.09), transparent 46%), radial-gradient(90% 90% at 60% 110%, rgb(86 194 242 / 0.12), transparent 62%), var(--surface); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1), inset 0 0 0 1px rgb(255 255 255 / 0.06), inset 0 -18px 40px -24px rgb(0 0 0 / 0.8), 0 30px 70px -36px rgb(0 0 0 / 0.95)",
+        "purpose": "Pestaña activa, núcleo del motor y esfera del cierre (sphere)."
+      },
+      {
+        "name": "lente-iris",
+        "value": "background: radial-gradient(circle at 34% 28%, rgb(255 255 255 / 0.55), transparent 16%), radial-gradient(circle at 50% 52%, var(--pupil) 0 22%, transparent 23%), radial-gradient(circle at 50% 52%, rgb(214 248 236 / 0.6) 0 24%, transparent 44%), radial-gradient(circle at 50% 52%, transparent 52%, rgb(9 9 11 / 0.7) 76%), conic-gradient(from 210deg at 50% 52%, var(--azure), var(--iris) 45%, var(--azure) 85%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18), inset 0 -6px 14px rgb(0 0 0 / 0.45), 0 0 0 6px rgb(86 194 242 / 0.06), -6px 10px 30px -12px rgb(86 194 242 / 0.55), 6px 10px 30px -12px rgb(107 227 90 / 0.55)",
+        "purpose": "La lente del campo, la que audita y la fecha vigente (lens-iris / iris-ring)."
+      },
+      {
+        "name": "halo-campo",
+        "value": "0 0 0 2px var(--azure), -24px 0 60px -16px rgb(86 194 242 / 0.5), 24px 0 60px -16px rgb(107 227 90 / 0.5)",
+        "purpose": "El iris cuando tiene el foco."
+      },
+      {
+        "name": "foco",
+        "value": "outline: 2px solid var(--azure); outline-offset: 3px",
+        "purpose": "Foco estándar de todo lo enfocable; sigue la curva del elemento."
+      },
+      {
+        "name": "foco-interior",
+        "value": "outline: 2px solid var(--azure); outline-offset: -3px",
+        "purpose": "Filas y bloques a sangre dentro de un contenedor con scroll (.focus-inset)."
+      },
+      {
+        "name": "foco-anillo",
+        "value": "box-shadow: inset 0 0 0 2px var(--azure); border-radius: inherit",
+        "purpose": "Anillo superpuesto en un hermano para contenedores con scroll (.peer ~ .focus-ring)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-lens",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Asentarse: entradas CSS, crecimiento de la lente, hover de burbujas, ruta del tabulador."
+      },
+      {
+        "name": "muelle-optico",
+        "value": "spring(stiffness 100, damping 20)",
+        "purpose": "Morfologías y entradas: lente viajera, anillos, burbujas, paradas, veredicto."
+      },
+      {
+        "name": "muelle-pestaña",
+        "value": "spring(stiffness 260, damping 30)",
+        "purpose": "La esfera que se desliza entre pestañas."
+      },
+      {
+        "name": "muelle-lupa",
+        "value": "spring(stiffness 520, damping 42, mass 0.6)",
+        "purpose": "La lupa óptica sigue al puntero."
+      },
+      {
+        "name": "aparicion",
+        "value": "from scale 0.8, y 28px, opacity 0; stagger 60ms",
+        "purpose": "Burbujas y piezas del observatorio."
+      },
+      {
+        "name": "line-up",
+        "value": "900ms ease-lens, retardo por línea",
+        "purpose": "El H1 sube línea a línea desde su máscara."
+      },
+      {
+        "name": "rise",
+        "value": "900ms ease-lens; con scroll, animation-timeline: view() entry 0% a cover 28%",
+        "purpose": "Entradilla, iris y bloques que emergen al hacer scroll; sin soporte, ya están en su sitio."
+      },
+      {
+        "name": "draw-in",
+        "value": "pathLength 0 → 1; ruta 2s ease-lens",
+        "purpose": "Arcos de los anillos, ruta del tabulador, curva de fechas."
+      },
+      {
+        "name": "dash-flow",
+        "value": "1.6s linear infinite",
+        "purpose": "El punteado blanco que avanza en el sentido del tabulador."
+      },
+      {
+        "name": "breathe-halo",
+        "value": "breathe 2.4s ease-in-out infinite; halo opacidad 0.35 → 0.8",
+        "purpose": "La lente que audita late."
+      },
+      {
+        "name": "float",
+        "value": "5.5–9.1s ease-in-out infinite, -5 a -9.5px",
+        "purpose": "Flotación de cada burbuja con su periodo."
+      },
+      {
+        "name": "drift",
+        "value": "drift-a 38s, drift-b 44s, drift-c 52s ease-in-out infinite",
+        "purpose": "Las tres lentes de fondo derivan, solo con transform."
+      },
+      {
+        "name": "estado",
+        "value": "200ms",
+        "purpose": "Color, fondo y opacidad en hover y pulsado; 300–500ms para escalas de lente."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms; MotionConfig reducedMotion=\"user\"",
+        "purpose": "Con prefers-reduced-motion todo queda quieto en su estado final."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón de luz",
+      "kind": "button",
+      "refersTo": "button-cta",
+      "description": "La acción principal, siempre «Auditar una URL»: píldora cta con texto oscuro a 16:1.",
+      "html": "<button class=\"ds-btn-cta\">Auditar una URL <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\" d=\"M40 128h176M144 56l72 72-72 72\"/></svg></button>",
+      "css": ".ds-btn-cta{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;gap:8px;height:56px;padding:0 28px;border:0;border-radius:9999px;background:var(--cta,#9cf08a);color:var(--on-cta,#09090b);font-size:1.0625rem;font-weight:500;box-shadow:inset 0 1px 0 rgb(255 255 255/.7);cursor:pointer;transition:background-color 200ms,transform 200ms;}.ds-btn-cta:hover{background:var(--cta-hover,#b8f5a8);}.ds-btn-cta:active{transform:scale(.98);}.ds-btn-cta:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}"
+    },
+    {
+      "name": "Botón fantasma",
+      "kind": "button",
+      "refersTo": "pill-ghost",
+      "description": "Enlaces de la cabecera, Copiar y acciones de fila: píldora transparente que gana luz en hover.",
+      "html": "<button class=\"ds-btn-ghost\">Copiar</button><button class=\"ds-btn-ghost\">Cómo funciona</button>",
+      "css": ".ds-btn-ghost{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:0;border-radius:9999px;background:transparent;color:var(--text-muted,#b4b4bc);font-size:.9375rem;cursor:pointer;transition:background-color 200ms,color 200ms;}.ds-btn-ghost:hover{background:rgb(255 255 255/.06);color:var(--text,#fafafa);}.ds-btn-ghost:active{transform:scale(.98);}.ds-btn-ghost:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}"
+    },
+    {
+      "name": "Iris (campo de URL)",
+      "kind": "input",
+      "refersTo": "input-iris",
+      "description": "Píldora con la lente a la izquierda, URL en Mono y el botón dentro; etiqueta encima y ayuda debajo.",
+      "html": "<form class=\"ds-iris-form\" onsubmit=\"return false\"><label class=\"ds-iris-label\" for=\"ds-url\">Dirección de la página</label><div class=\"ds-iris\"><span class=\"ds-iris-lens\" aria-hidden=\"true\"><span class=\"ds-iris-pupil\"></span></span><input id=\"ds-url\" class=\"ds-iris-input\" placeholder=\"https://www.tu-tienda.es\"><button class=\"ds-btn-cta\" type=\"submit\">Auditar una URL <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\" d=\"M40 128h176M144 56l72 72-72 72\"/></svg></button></div><p class=\"ds-iris-help\">Una página pública. Tarda unos diez segundos.</p></form>",
+      "css": ".ds-iris-form{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;max-width:40rem;color:var(--text,#fafafa);}.ds-iris-label{display:block;margin-bottom:12px;padding-left:24px;font-size:.875rem;font-weight:500;color:var(--text-muted,#b4b4bc);}.ds-iris{position:relative;display:flex;align-items:center;gap:8px;padding:8px;border-radius:9999px;background:radial-gradient(140% 220% at 0% 0%,rgb(255 255 255/.06),transparent 50%),#18181b;box-shadow:inset 0 1px 0 rgb(255 255 255/.07),inset 0 0 0 1px rgb(255 255 255/.055);transition:box-shadow 300ms;}.ds-iris:focus-within{box-shadow:0 0 0 2px var(--azure,#56c2f2),-24px 0 60px -16px rgb(86 194 242/.5),24px 0 60px -16px rgb(107 227 90/.5);}.ds-iris-lens{position:relative;flex:none;width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 50% 50%,#c8f7b6 0 30%,#6be35a 44%,#2f8a3c 62%,#0b3318 76%);box-shadow:inset 0 0 0 1px rgb(255 255 255/.18),inset 0 -6px 14px rgb(0 0 0/.45),0 0 0 6px rgb(86 194 242/.06),0 10px 30px -10px rgb(86 194 242/.45);transition:transform 500ms cubic-bezier(.16,1,.3,1);}.ds-iris:focus-within .ds-iris-lens{transform:scale(1.1);}.ds-iris-pupil{position:absolute;inset:34%;border-radius:9999px;background:#0b0d12;transition:transform 500ms cubic-bezier(.16,1,.3,1);}.ds-iris:focus-within .ds-iris-pupil{transform:scale(1.55);}.ds-iris-input{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;flex:1;min-width:0;height:56px;border:0;background:transparent;color:var(--text,#fafafa);font-size:1.0625rem;outline:none;caret-color:var(--azure,#56c2f2);}.ds-iris-input::placeholder{color:var(--text-muted,#b4b4bc);}.ds-iris-help{margin:12px 0 0;padding-left:24px;font-size:.875rem;color:var(--text-muted,#b4b4bc);}.ds-btn-cta{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;gap:8px;height:56px;padding:0 28px;border:0;border-radius:9999px;background:var(--cta,#9cf08a);color:var(--on-cta,#09090b);font-size:1.0625rem;font-weight:500;box-shadow:inset 0 1px 0 rgb(255 255 255/.7);cursor:pointer;transition:background-color 200ms,transform 200ms;}.ds-btn-cta:hover{background:var(--cta-hover,#b8f5a8);}.ds-btn-cta:active{transform:scale(.98);}.ds-btn-cta:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}"
+    },
+    {
+      "name": "Navegación en píldora",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Cabecera flotante de 64 px sobre raised translúcido con canto fuerte: marca, enlaces fantasma y botón de luz.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-logo\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 28 28\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"14\" r=\"8.5\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\".55\" stroke-width=\"1.5\"/><circle cx=\"17.5\" cy=\"14\" r=\"8.5\" fill=\"#6be35a\"/><circle cx=\"17.5\" cy=\"14\" r=\"5.2\" fill=\"#c8f7b6\" fill-opacity=\".55\"/><circle cx=\"15.2\" cy=\"11.2\" r=\"1.6\" fill=\"#fff\" fill-opacity=\".8\"/></svg>LupA11y</span><nav><a href=\"#\">Informe</a><a href=\"#\">Cómo funciona</a><a href=\"#\">Normativa</a></nav><a class=\"ds-nav-cta\" href=\"#\">Auditar una URL <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\" d=\"M40 128h176M144 56l72 72-72 72\"/></svg></a></header>",
+      "css": ".ds-nav{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:flex;align-items:center;gap:16px;height:64px;max-width:70rem;padding:0 8px 0 20px;border-radius:9999px;background:rgb(17 17 19/.85);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgb(255 255 255/.12),inset 0 0 0 1px rgb(255 255 255/.09),0 24px 60px -32px rgb(0 0 0/.9);color:var(--text,#fafafa);}.ds-logo{display:inline-flex;align-items:center;gap:10px;font-size:1.0625rem;font-weight:600;letter-spacing:-.02em;}.ds-nav nav{display:flex;gap:4px;margin-left:auto;}.ds-nav nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:9999px;color:var(--text-muted,#b4b4bc);font-size:.9375rem;text-decoration:none;transition:background-color 200ms,color 200ms;}.ds-nav nav a:hover{background:rgb(255 255 255/.06);color:var(--text,#fafafa);}.ds-nav a:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}.ds-nav-cta{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:9999px;background:var(--cta,#9cf08a);color:var(--on-cta,#09090b);font-size:.9375rem;font-weight:500;text-decoration:none;box-shadow:inset 0 1px 0 rgb(255 255 255/.6);transition:background-color 200ms;}.ds-nav-cta:hover{background:var(--cta-hover,#b8f5a8);}"
+    },
+    {
+      "name": "Pestañas en píldora",
+      "kind": "nav",
+      "refersTo": "tab-selected",
+      "description": "Control segmentado APG sobre surface; la activa lleva una esfera.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">Hallazgos <span class=\"ds-n\">10</span></button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Teclado <span class=\"ds-n\">20</span></button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Registro</button></div>",
+      "css": ".ds-tabs{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;gap:4px;padding:4px;border-radius:9999px;background:var(--surface,#18181b);box-shadow:inset 0 1px 0 rgb(255 255 255/.07),inset 0 0 0 1px rgb(255 255 255/.055);}.ds-tab{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:0;border-radius:9999px;background:transparent;color:var(--text-muted,#b4b4bc);font:inherit;font-size:.9375rem;cursor:pointer;transition:color 200ms;}.ds-tab:hover{color:var(--text,#fafafa);}.ds-tab[aria-selected=true]{color:var(--text,#fafafa);background:radial-gradient(120% 120% at 28% 18%,rgb(255 255 255/.09),transparent 46%),radial-gradient(90% 90% at 60% 110%,rgb(86 194 242/.12),transparent 62%),var(--surface,#18181b);box-shadow:inset 0 1px 0 rgb(255 255 255/.1),inset 0 0 0 1px rgb(255 255 255/.06),inset 0 -18px 40px -24px rgb(0 0 0/.8);}.ds-tab:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}.ds-n{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--text-muted,#b4b4bc);}"
+    },
+    {
+      "name": "Toggles de severidad",
+      "kind": "chip",
+      "refersTo": "toggle-severity",
+      "description": "Lente de severidad, nombre y recuento; pulsado a surface-2, apagado al 60 % y tachado.",
+      "html": "<button class=\"ds-sev\" aria-pressed=\"true\"><span class=\"ds-dot\" style=\"--t:#c8f7b6;--s:12px\"></span>Crítica <span class=\"ds-n\">3</span></button><button class=\"ds-sev\" aria-pressed=\"true\"><span class=\"ds-dot\" style=\"--t:#6be35a;--s:10.8px\"></span>Alta <span class=\"ds-n\">5</span></button><button class=\"ds-sev\" aria-pressed=\"true\"><span class=\"ds-dot\" style=\"--t:#45b34f;--s:9.8px\"></span>Media <span class=\"ds-n\">2</span></button><button class=\"ds-sev\" aria-pressed=\"false\"><span class=\"ds-dot\" style=\"--t:#2f8a3c;--s:9.1px\"></span>Baja <span class=\"ds-n\">0</span></button>",
+      "css": ".ds-sev{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0 6px 6px 0;padding:0 16px;border:0;border-radius:9999px;background:var(--surface,#18181b);box-shadow:inset 0 1px 0 rgb(255 255 255/.07),inset 0 0 0 1px rgb(255 255 255/.055);color:var(--text,#fafafa);font-size:.875rem;cursor:pointer;transition:background-color 200ms,opacity 200ms;}.ds-sev:hover,.ds-sev[aria-pressed=true]{background:var(--surface-2,#1f1f23);}.ds-sev[aria-pressed=false]{opacity:.6;text-decoration:line-through;}.ds-sev:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}.ds-dot{width:var(--s);height:var(--s);border-radius:9999px;background:var(--t);box-shadow:0 0 10px color-mix(in srgb,var(--t) 53%,transparent);}.ds-n{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--text-muted,#b4b4bc);}"
+    },
+    {
+      "name": "Opciones en píldora",
+      "kind": "chip",
+      "refersTo": "option-pill-checked",
+      "description": "Radios del comprobador: surface-2 sin marcar, cta con texto oscuro al marcarse; el foco se pinta en la píldora.",
+      "html": "<fieldset class=\"ds-opts\"><legend>¿Qué servicio prestas?</legend><label class=\"ds-opt\"><input type=\"radio\" name=\"ds-s\" checked>Comercio electrónico</label><label class=\"ds-opt\"><input type=\"radio\" name=\"ds-s\">Banca para consumidores</label><label class=\"ds-opt\"><input type=\"radio\" name=\"ds-s\">Otro sector</label></fieldset>",
+      "css": ".ds-opts{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;border:0;}.ds-opts legend{margin-bottom:12px;font-size:.875rem;font-weight:500;color:var(--text-muted,#b4b4bc);}.ds-opt{position:relative;display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:9999px;background:var(--surface-2,#1f1f23);box-shadow:inset 0 0 0 1px rgb(255 255 255/.06);color:var(--text-muted,#b4b4bc);font-size:.9375rem;cursor:pointer;transition:background-color 200ms,color 200ms;}.ds-opt:hover{color:var(--text,#fafafa);}.ds-opt input{position:absolute;opacity:0;width:1px;height:1px;}.ds-opt:has(:checked){background:var(--cta,#9cf08a);color:var(--on-cta,#09090b);font-weight:500;}.ds-opt:has(:focus-visible){outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}"
+    },
+    {
+      "name": "Burbujas de hallazgo",
+      "kind": "custom",
+      "refersTo": "finding-bubble",
+      "description": "Una por hallazgo, de tamaño y tono según la gravedad, numerada y con nombre accesible completo; flotan despacio.",
+      "html": "<div class=\"ds-bubbles\"><button class=\"ds-bub\" style=\"--t:#c8f7b6;--d:84px\" aria-label=\"1. Crítica: Los botones deben tener texto discernible.\">1</button><button class=\"ds-bub\" style=\"--t:#6be35a;--d:67px;animation-delay:-1.2s\" aria-label=\"2. Alta: El foco no se ve al pulsar Tab.\">2</button><button class=\"ds-bub\" style=\"--t:#45b34f;--d:54px;animation-delay:-2.1s\" aria-label=\"3. Media: Contraste insuficiente.\">3</button><button class=\"ds-bub\" style=\"--t:#2f8a3c;--d:44px;animation-delay:-3s\" aria-label=\"4. Baja: Región sin nombre.\">4</button></div>",
+      "css": ".ds-bubbles{display:flex;align-items:center;gap:20px;padding:24px;}.ds-bub{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;width:var(--d);height:var(--d);border:0;border-radius:9999px;background:radial-gradient(circle at 32% 26%,rgb(255 255 255/.18),transparent 38%),radial-gradient(circle at 50% 60%,color-mix(in srgb,var(--t) 20%,transparent),transparent 72%),#18181b;box-shadow:inset 0 0 0 1.5px var(--t),0 0 22px -6px color-mix(in srgb,var(--t) 53%,transparent);color:var(--text,#fafafa);font-size:.8125rem;font-weight:500;cursor:pointer;animation:ds-float 6.4s ease-in-out infinite;transition:transform 300ms cubic-bezier(.16,1,.3,1);}.ds-bub:hover{transform:scale(1.1);}.ds-bub[aria-pressed=true]{box-shadow:inset 0 0 0 2.5px var(--t),0 0 34px -6px color-mix(in srgb,var(--t) 80%,transparent);}.ds-bub:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}@keyframes ds-float{50%{translate:0 -7px;}}@media (prefers-reduced-motion:reduce){.ds-bub{animation:none;}}"
+    },
+    {
+      "name": "Fila de hallazgo",
+      "kind": "card",
+      "refersTo": "finding-row-active",
+      "description": "Fila redondeada del informe: número en círculo Mono, título, severidad con nombre y fuente.",
+      "html": "<div class=\"ds-row ds-row-on\"><span class=\"ds-num\">3</span><div><p class=\"ds-row-t\">Trampa de teclado: el foco no puede salir de un grupo de elementos</p><p class=\"ds-row-m\"><span class=\"ds-tag\"><span class=\"ds-dot\"></span>Crítica</span><span>Teclado</span><span>WCAG 2.1.2 (A)</span><span class=\"ds-mono\">×2</span></p><code class=\"ds-sel\">#suscripcion &gt; input</code></div></div>",
+      "css": ".ds-row{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:grid;grid-template-columns:2.25rem minmax(0,1fr);gap:8px 12px;max-width:480px;padding:16px;border-radius:1.75rem;color:var(--text,#fafafa);transition:background-color 300ms,box-shadow 300ms;}.ds-row:hover{background:rgb(255 255 255/.03);}.ds-row-on{background:var(--surface-2,#1f1f23);box-shadow:inset 0 0 0 1px rgb(86 194 242/.35);}.ds-num{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;display:grid;place-items:center;width:36px;height:36px;border-radius:9999px;background:var(--surface,#18181b);font-size:.8125rem;}.ds-row-t{margin:6px 0 0;font-size:.9375rem;font-weight:500;line-height:1.375;}.ds-row-m{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin:10px 0 12px;font-size:.875rem;color:var(--text-muted,#b4b4bc);}.ds-tag{display:inline-flex;align-items:center;gap:8px;padding:2px 10px 2px 8px;border-radius:9999px;background:rgb(255 255 255/.08);color:var(--text,#fafafa);}.ds-dot{width:12px;height:12px;border-radius:9999px;background:#c8f7b6;box-shadow:0 0 10px rgb(207 229 255/.53);}.ds-mono{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:.8125rem;}.ds-sel{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;display:inline-block;padding:4px 12px;border-radius:9999px;background:rgb(255 255 255/.06);color:var(--azure-strong,#bfeaff);font-size:.75rem;}"
+    },
+    {
+      "name": "Bloque de código",
+      "kind": "card",
+      "refersTo": "code-block",
+      "description": "Código sobre bg con canto y radio de 1,75 rem; nombre del fichero en Mono y Copiar en píldora fantasma.",
+      "html": "<figure class=\"ds-code\"><figcaption><span>.github/workflows/accesibilidad.yml</span><button class=\"ds-copy\">Copiar</button></figcaption><pre>- uses: Adriiiii24/LupA11y@main\n  with:\n    url: http://localhost:3000\n    fail-on: high</pre></figure>",
+      "css": ".ds-code{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;margin:0;max-width:480px;overflow:hidden;border-radius:1.75rem;background:var(--bg,#09090b);box-shadow:inset 0 1px 0 rgb(255 255 255/.07),inset 0 0 0 1px rgb(255 255 255/.055);color:var(--text,#fafafa);}.ds-code figcaption{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 20px;}.ds-code figcaption span{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:.8125rem;color:var(--text-muted,#b4b4bc);}.ds-copy{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:0;border-radius:9999px;background:none;color:var(--text-muted,#b4b4bc);font:inherit;font-size:.875rem;cursor:pointer;transition:background-color 200ms,color 200ms;}.ds-copy:hover{background:rgb(255 255 255/.06);color:var(--text,#fafafa);}.ds-copy:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}.ds-code pre{font-family:var(--font-geist-mono,'Geist Mono'),ui-monospace,monospace;font-variant-numeric:tabular-nums;margin:0;padding:8px 20px 20px;font-size:.8125rem;line-height:24px;overflow-x:auto;}"
+    },
+    {
+      "name": "Esfera",
+      "kind": "card",
+      "refersTo": "panel-raised",
+      "description": "El recipiente de luz: degradados radiales y cantos interiores, radio extremo; en ancho, círculo.",
+      "html": "<div class=\"ds-sphere\"><h2>Evidencia, no promesas.</h2><p>Ninguna herramienta automática certifica WCAG. LupA11y te da el mapa y los arreglos.</p></div>",
+      "css": ".ds-sphere{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:grid;place-items:center;align-content:center;max-width:26rem;aspect-ratio:1;padding:48px;border-radius:9999px;text-align:center;color:var(--text,#fafafa);background:radial-gradient(120% 120% at 28% 18%,rgb(255 255 255/.09),transparent 46%),radial-gradient(90% 90% at 60% 110%,rgb(86 194 242/.12),transparent 62%),var(--surface,#18181b);box-shadow:inset 0 1px 0 rgb(255 255 255/.1),inset 0 0 0 1px rgb(255 255 255/.06),inset 0 -18px 40px -24px rgb(0 0 0/.8),0 30px 70px -36px rgb(0 0 0/.95);}.ds-sphere h2{margin:0;font-size:2.25rem;font-weight:600;line-height:1.02;letter-spacing:-.04em;}.ds-sphere p{margin:16px 0 0;max-width:30ch;font-size:1.0625rem;line-height:1.6;color:var(--text-muted,#b4b4bc);}"
+    },
+    {
+      "name": "Etiqueta «Nuevo»",
+      "kind": "badge",
+      "refersTo": "badge-new",
+      "description": "Delante de la severidad de un hallazgo que no estaba en la auditoría anterior de la misma página. Su nombre accesible completo es «Nuevo desde la auditoría anterior».",
+      "html": "<span class=\"ds-new\">Nuevo<span class=\"ds-vh\"> desde la auditoría anterior</span></span>",
+      "css": ".ds-new{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;padding:2px 10px;border-radius:9999px;background:var(--azure-strong,#bfeaff);color:var(--on-cta,#09090b);font-size:.8125rem;font-weight:500;}.ds-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}"
+    },
+    {
+      "name": "Acciones del informe",
+      "kind": "button-group",
+      "refersTo": "share-button",
+      "description": "Llevarse el informe: JSON del contrato, SARIF, Markdown y, si el servidor lo guardó, el enlace. Píldoras de 44 px; al copiar, «Copiado», que también se anuncia.",
+      "html": "<span class=\"ds-share\" role=\"group\" aria-label=\"Llevarse el informe\"><button class=\"ds-share-b\" type=\"button\">Descargar JSON</button><button class=\"ds-share-b\" type=\"button\">Descargar SARIF</button><button class=\"ds-share-b\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><rect x=\"88\" y=\"88\" width=\"128\" height=\"128\" rx=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"16\"/><path d=\"M168 88V56a16 16 0 0 0-16-16H56a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"16\" stroke-linecap=\"round\"/></svg>Copiar Markdown</button><button class=\"ds-share-b\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><rect x=\"88\" y=\"88\" width=\"128\" height=\"128\" rx=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"16\"/><path d=\"M168 88V56a16 16 0 0 0-16-16H56a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"16\" stroke-linecap=\"round\"/></svg>Copiar enlace</button></span>",
+      "css": ".ds-share{display:flex;flex-wrap:wrap;gap:6px;}.ds-share-b{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border:0;border-radius:9999px;background:rgb(255 255 255/.06);color:var(--text,#fafafa);font-size:.875rem;cursor:pointer;transition:background-color 200ms,transform 200ms;}.ds-share-b:hover{background:rgb(255 255 255/.1);}.ds-share-b:active{transform:scale(.98);}.ds-share-b:focus-visible{outline:2px solid var(--azure,#56c2f2);outline-offset:3px;}"
+    },
+    {
+      "name": "Nota de comparación",
+      "kind": "note",
+      "refersTo": "comparison-note",
+      "description": "Abre el informe cuando se vuelve a auditar la misma página: qué se resolvió, qué es nuevo, qué empeora y qué sigue igual, en una frase.",
+      "html": "<p class=\"ds-cmp\"><span class=\"ds-cmp-t\">Frente a la auditoría anterior de esta página: </span>2 reglas resueltas · 1 nueva · 3 nodos arreglados · 7 siguen igual.</p>",
+      "css": ".ds-cmp{font-family:var(--font-geist,'Geist'),ui-sans-serif,system-ui,sans-serif;max-width:640px;margin:0;padding:12px 20px;border-radius:1.5rem;background:var(--surface,#18181b);color:var(--text-muted,#b4b4bc);font-size:.875rem;line-height:1.5;box-shadow:inset 0 0 0 1px rgb(86 194 242/.3);}.ds-cmp-t{color:var(--text,#fafafa);font-weight:500;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Fluid Optics",
+    "overview": "LupA11y mira la web a través de lentes. Todo lo que se toca es un círculo o una píldora, todo lo que contiene es un recipiente de radio extremo, y el resultado de una auditoría se lee en anillos concéntricos y burbujas que salen de la misma lente en la que se pegó la URL. El fondo es un zinc casi negro y la luz llega de dentro: degradados radiales finos, un canto interior blanco a muy baja opacidad y los dos colores del logo: el azul para lo interactivo y lo medido, y el verde para el progreso y la gravedad, con su rampa ordinal.\n\nLa página es serena y el instrumento es denso. El primer pantallazo pone el titular y el iris a la izquierda y el observatorio a la derecha, con tres lentes translúcidas que se cruzan en modo «pantalla» detrás y derivan muy despacio. El informe es una ventana redondeada con la captura real y un dock de pestañas en píldora, cosidos por una curva iris. Las secciones se separan por espacio negativo y por ondas suaves, nunca por un filete. El sistema es solo oscuro, por decisión del usuario.\n\nEl mundo se audita a sí mismo: texto a 15,7:1 o más sobre todas las superficies, texto secundario a 7,97:1 o más, iris a 8,27:1 o más, aro de foco iris visible sobre cualquier superficie, objetivos de 44 px o más y ninguna información solo por tono o tamaño. Historia: Neo-Glass, Señalética accesible y Galerada corregida los rechazó el usuario (2026-10-01 / 2026-10-02) y no se reintroducen; de ellos solo sobrevive la lupa óptica.",
+    "keyCharacteristics": [
+      "Dos tonos con croma, los del logo: azul para lo interactivo y lo medido, verde (con su rampa ordinal de severidad) para el progreso y la gravedad; nada más tiene croma.",
+      "Ninguna esquina a 90 grados: píldoras y círculos para lo interactivo, 1,75 a 3 rem para los recipientes.",
+      "Volumen por luz interior (degradados radiales y cantos inset), no por bordes ni por neones.",
+      "Geist para leer y titular; Geist Mono con cifras tabulares para lo que el motor mide o el usuario copia.",
+      "Movimiento óptico: muelles suaves, aparición escalonada desde escala 0,8, trazos que se dibujan, flotación y deriva lentas; todo quieto con movimiento reducido.",
+      "Firma: la lente única que viaja del iris al observatorio, late mientras audita y se convierte en el núcleo de los anillos."
+    ],
+    "rules": [
+      {
+        "name": "The Two Lenses Rule",
+        "body": "Solo hay dos tonos con croma, los del logo: azul para lo interactivo y lo medido, verde para progreso y gravedad. Se juntan solo en el iris, en la luz de los botones y en las lentes de fondo. Tienen casi la misma luminosidad, así que nunca distinguen información por sí solos: un estado nuevo se dice con luminosidad, forma, número o texto.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Tone-Alone Rule",
+        "body": "La severidad nunca se transmite solo por tono o tamaño. Cada burbuja es un botón numerado con su gravedad y su título en el nombre accesible; cada etiqueta lleva el nombre; cada toggle, su nombre y su recuento.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Button Rule",
+        "body": "La acción principal es luz: relleno `cta` con texto `on-cta`. El iris no rellena botones de texto largo ni se usa como color de texto sobre `cta`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed Capture Rule",
+        "body": "Sobre la captura solo van las tintas fijas de captura, con halo blanco, porque la captura siempre es la página auditada y no el tema.",
+        "section": "colors"
+      },
+      {
+        "name": "The Measured-Is-Mono Rule",
+        "body": "Lo que el motor mide o el usuario copia va en Geist Mono con cifras tabulares. La prosa nunca va en Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "No hay mayúsculas con tracking en ninguna parte: ni rótulos sobre los titulares ni etiquetas de categoría. Un titular abre su sección solo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Wave-Or-Space Rule",
+        "body": "Dos zonas se separan por espacio negativo, por un velo en degradado hacia `bg` o por una onda (`raised` dibujada como curva). Nunca por un filete recto.",
+        "section": "layout"
+      },
+      {
+        "name": "The Inner Light Rule",
+        "body": "Una superficie nueva recibe el canto (o el canto fuerte si flota). Nunca un borde sólido.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Halo-Not-Neon Rule",
+        "body": "El resplandor iris es luz de una lente o de una marca. No hay `text-shadow`, ni halos alrededor del texto, ni bordes luminosos saturados.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do dar a todo lo interactivo forma de píldora o círculo y a los recipientes radios de 1,75 a 3 rem.",
+      "Do modelar las superficies con el canto, el canto fuerte, la esfera o la lente iris.",
+      "Do usar el azul y el verde del logo (con la rampa del verde) como únicas luces de color, y `cta` con `on-cta` para la acción principal.",
+      "Do acompañar la severidad con su nombre, su número o su nombre accesible, siempre.",
+      "Do distinguir la fuente por el estilo de línea: continua axe, doble zoom y espaciado, punteada teclado, discontinua visión.",
+      "Do poner en Geist Mono con cifras tabulares todo lo que se mide o se copia.",
+      "Do usar la tinta fija de captura con halo blanco para todo lo que se dibuja sobre la página auditada.",
+      "Do separar zonas con espacio, velos u ondas.",
+      "Do dar a todo objetivo táctil 44 px o más, con pseudoelemento si lo visible es menor.",
+      "Do usar muelles de rigidez 100 y amortiguación 20 y dejarlo todo quieto con movimiento reducido.",
+      "Do sacar todo color de las variables de `globals.css` o de `components/palette.ts`, nunca de un literal en un componente."
+    ],
+    "donts": [
+      "Don't reintroducir piezas de Neo-Glass, Señalética accesible ni Galerada corregida (neones, amarillo podotáctil, tintas CMYK, retícula visible, esquinas rectas, Bricolage Grotesque); solo la lupa óptica sigue viva.",
+      "Don't dibujar una esquina a 90 grados ni un filete recto.",
+      "Don't usar bordes sólidos para separar o delimitar; el canto es interior y casi transparente.",
+      "Don't poner resplandores ni `text-shadow` al texto.",
+      "Don't introducir un tercer tono con croma ni usar `sev-low` como color de texto.",
+      "Don't transmitir severidad, fuente o estado solo con tono o tamaño.",
+      "Don't poner rótulos en mayúsculas con tracking sobre los titulares.",
+      "Don't crear un modo claro: el sistema es solo oscuro.",
+      "Don't mover la página por iniciativa propia ni anunciar cada línea del registro: la región viva dice fases y resultado."
+    ]
+  }
+}

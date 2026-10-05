@@ -1,0 +1,16 @@
+**/node_modules
+**/.next
+.pack
+.git
+.github
+.claude
+.impeccable
+coverage
+docs
+**/*.log
+**/*.tsbuildinfo
+apps/web/.env
+apps/web/.env.*
+!apps/web/.env.example
+lupa11y-report.json
+lupa11y-summary.md

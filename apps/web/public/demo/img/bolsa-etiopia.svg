@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" width="560" height="400">
+  <!-- Ilustración sintética de LupA11y para la demo: bolsa de café de Etiopía sobre una mesa. -->
+  <rect width="560" height="400" fill="#e9d8c2"/>
+  <rect y="300" width="560" height="100" fill="#c9a27e"/>
+  <rect y="300" width="560" height="6" fill="#b58d69"/>
+  <ellipse cx="300" cy="318" rx="150" ry="14" fill="#8a6446" opacity="0.35"/>
+  <path d="M190 110 L410 110 L426 312 L174 312 Z" fill="#7a2e12"/>
+  <path d="M190 110 L410 110 L404 136 L196 136 Z" fill="#5e220c"/>
+  <path d="M200 92 L400 92 L410 110 L190 110 Z" fill="#8f3a1a"/>
+  <rect x="222" y="168" width="156" height="104" rx="6" fill="#fbf6ef"/>
+  <text x="300" y="200" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#2a1f17">ETIOPÍA</text>
+  <text x="300" y="226" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#2a1f17">Guji · lavado</text>
+  <text x="300" y="254" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="2" fill="#7a2e12">TOSTADERO NORTE</text>
+  <g fill="#3b2415">
+    <ellipse cx="120" cy="296" rx="14" ry="9" transform="rotate(-20 120 296)"/>
+    <ellipse cx="146" cy="304" rx="14" ry="9" transform="rotate(15 146 304)"/>
+    <ellipse cx="470" cy="298" rx="14" ry="9" transform="rotate(30 470 298)"/>
+    <ellipse cx="444" cy="306" rx="14" ry="9" transform="rotate(-10 444 306)"/>
+  </g>
+  <g stroke="#a8764f" stroke-width="2" stroke-linecap="round">
+    <line x1="120" y1="290" x2="120" y2="302" transform="rotate(-20 120 296)"/>
+    <line x1="146" y1="298" x2="146" y2="310" transform="rotate(15 146 304)"/>
+    <line x1="470" y1="292" x2="470" y2="304" transform="rotate(30 470 298)"/>
+    <line x1="444" y1="300" x2="444" y2="312" transform="rotate(-10 444 306)"/>
+  </g>
+</svg>

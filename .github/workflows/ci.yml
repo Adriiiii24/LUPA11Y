@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Tipos, lint, tests y build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Caché de Chromium
+        id: chromium-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+        if: steps.chromium-cache.outputs.cache-hit != 'true'
+      - run: npx playwright install-deps chromium
+        if: steps.chromium-cache.outputs.cache-hit == 'true'
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      # La web de verdad: build de producción, auditoría en directo, enlace guardado y axe sobre la propia interfaz.
+      - run: npm run test:web
+      # Los paquetes se pueden publicar: compilan a JavaScript y sus binarios arrancan.
+      - run: npm run pack:packages
+
+  self-audit:
+    name: LupA11y se audita a sí misma
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci && npm run build
+      - run: npm start & timeout 60 bash -c 'until curl -sf localhost:3000 >/dev/null; do sleep 1; done'
+      # La propia Action del repositorio, igual que la usaría cualquier proyecto.
+      - uses: ./
+        with:
+          url: |
+            http://localhost:3000
+          fail-on: high
+          report-path: lupa11y-report.json
+          sarif-path: lupa11y.sarif
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
+      - name: Guardar el informe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lupa11y-autoauditoria
+          path: |
+            lupa11y-report.json
+            lupa11y.sarif
+          if-no-files-found: ignore
+
+  docker:
+    name: La imagen de la web se construye y audita
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build -t lupa11y-web .
+      - name: Arrancar la imagen y auditar su propia demo
+        run: |
+          docker run -d --name lupa11y -p 3000:3000 -e LUPA11Y_NETWORK=any lupa11y-web
+          timeout 120 bash -c 'until curl -sf localhost:3000/robots.txt >/dev/null; do sleep 2; done'
+          curl -sf -X POST localhost:3000/api/audit -H 'content-type: application/json' -d '{"url":"http://localhost:3000/demo"}' > stream.ndjson
+          grep -q '"type":"result"' stream.ndjson
+          grep -q '"type":"saved"' stream.ndjson
+      - if: failure()
+        run: docker logs lupa11y

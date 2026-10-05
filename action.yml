@@ -1,0 +1,172 @@
+name: LupA11y
+description: Auditoría de accesibilidad agéntica con axe-core, reflujo y espaciado, un agente de teclado y Gemini Vision. Falla el job por encima de la severidad que elijas.
+author: Adrián Martínez Panés
+branding:
+  icon: search
+  color: blue
+
+inputs:
+  url:
+    description: Una o varias URL que se auditan, una por línea. Puede ser http://localhost:3000 si levantas la app en el mismo job.
+    required: false
+    default: ''
+  sitemap:
+    description: URL de un sitemap.xml cuyas páginas también se auditan (hasta max-pages).
+    required: false
+    default: ''
+  max-pages:
+    description: Páginas como máximo entre las URL y el sitemap.
+    required: false
+    default: '10'
+  fail-on:
+    description: Severidad mínima que hace fallar el job (critical, high, medium, low o none).
+    required: false
+    default: high
+  level:
+    description: Nivel WCAG que se audita (AA o AAA).
+    required: false
+    default: AA
+  baseline:
+    description: Informe JSON de una ejecución anterior. Con él, el job solo falla por lo que es nuevo o empeora.
+    required: false
+    default: ''
+  gemini-api-key:
+    description: Clave de Gemini para la fase de visión. Sin ella, la visión se omite y el resto funciona igual.
+    required: false
+    default: ''
+  report-path:
+    description: Dónde se guarda el informe JSON (sin imágenes).
+    required: false
+    default: lupa11y-report.json
+  sarif-path:
+    description: Si se indica, guarda los hallazgos en SARIF 2.1.0 para subirlos al escaneo de código de GitHub.
+    required: false
+    default: ''
+  comment-pr:
+    description: En una pull request, publica o actualiza un comentario con el resumen (necesita permiso pull-requests write).
+    required: false
+    default: 'false'
+  github-token:
+    description: Token para el comentario en la pull request.
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  report-path:
+    description: Ruta del informe JSON.
+    value: ${{ inputs.report-path }}
+  sarif-path:
+    description: Ruta del SARIF, si se pidió.
+    value: ${{ inputs.sarif-path }}
+  exit-code:
+    description: 0 sin hallazgos por encima del umbral, 1 con hallazgos, 2 si alguna auditoría falló.
+    value: ${{ steps.audit.outputs.exit-code }}
+
+runs:
+  using: composite
+  steps:
+    # Solo se instala Node si el del job no sirve: así la Action no cambia el Node de los pasos siguientes.
+    - name: Comprobar Node
+      id: node
+      shell: bash
+      run: |
+        if command -v node >/dev/null 2>&1 && node -e "const [a, b] = process.versions.node.split('.').map(Number); process.exit(a > 24 || (a === 24 && b >= 11) ? 0 : 1)"; then
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "ok=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Preparar Node 24
+      if: steps.node.outputs.ok != 'true'
+      uses: actions/setup-node@v5
+      with:
+        node-version: 24
+
+    - name: Instalar LupA11y
+      id: install
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        npm ci --workspace @lupa11y/cli --include-workspace-root=false --no-audit --no-fund
+        echo "playwright=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+
+    - name: Caché de Chromium
+      id: chromium-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: lupa11y-chromium-${{ runner.os }}-${{ steps.install.outputs.playwright }}
+
+    - name: Instalar Chromium
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      env:
+        CACHE_HIT: ${{ steps.chromium-cache.outputs.cache-hit }}
+      run: |
+        if [ "$CACHE_HIT" = "true" ]; then
+          npx playwright install-deps chromium
+        else
+          npx playwright install --with-deps chromium
+        fi
+
+    - name: Auditar
+      id: audit
+      shell: bash
+      # Las entradas llegan por entorno y como argumentos sueltos, nunca interpoladas en el script:
+      # así no hay inyección de comandos.
+      env:
+        GEMINI_API_KEY: ${{ inputs.gemini-api-key }}
+        LUPA11Y_URL: ${{ inputs.url }}
+        LUPA11Y_SITEMAP: ${{ inputs.sitemap }}
+        LUPA11Y_MAX_PAGES: ${{ inputs.max-pages }}
+        LUPA11Y_FAIL_ON: ${{ inputs.fail-on }}
+        LUPA11Y_LEVEL: ${{ inputs.level }}
+        LUPA11Y_BASELINE: ${{ inputs.baseline }}
+        LUPA11Y_REPORT: ${{ inputs.report-path }}
+        LUPA11Y_SARIF: ${{ inputs.sarif-path }}
+        LUPA11Y_CLI: ${{ github.action_path }}/packages/cli/src/main.ts
+      run: |
+        read -r -a urls <<< "$(printf '%s' "$LUPA11Y_URL" | tr '\r\n' '  ')"
+        if [ "${#urls[@]}" -eq 0 ] && [ -z "$LUPA11Y_SITEMAP" ]; then
+          echo "::error title=LupA11y::Indica al menos una URL o un sitemap."
+          echo "exit-code=2" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        summary="$RUNNER_TEMP/lupa11y-summary.md"
+        : > "$summary"
+        args=("${urls[@]}" --fail-on "$LUPA11Y_FAIL_ON" --level "$LUPA11Y_LEVEL" --max-pages "$LUPA11Y_MAX_PAGES" --out "$LUPA11Y_REPORT" --summary "$summary" --no-images)
+        if [ -n "$LUPA11Y_SITEMAP" ]; then args+=(--sitemap "$LUPA11Y_SITEMAP"); fi
+        if [ -n "$LUPA11Y_BASELINE" ]; then args+=(--baseline "$LUPA11Y_BASELINE"); fi
+        if [ -n "$LUPA11Y_SARIF" ]; then args+=(--sarif "$LUPA11Y_SARIF"); fi
+        set +e
+        node "$LUPA11Y_CLI" "${args[@]}"
+        code=$?
+        set -e
+        cat "$summary" >> "$GITHUB_STEP_SUMMARY"
+        echo "summary=$summary" >> "$GITHUB_OUTPUT"
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+
+    - name: Comentar en la pull request
+      if: inputs.comment-pr == 'true' && github.event_name == 'pull_request' && steps.audit.outputs.summary != ''
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        SUMMARY: ${{ steps.audit.outputs.summary }}
+      run: |
+        body="$RUNNER_TEMP/lupa11y-comment.md"
+        marker='<!-- lupa11y -->'
+        # GitHub admite comentarios de hasta 65 536 caracteres.
+        { echo "$marker"; head -c 60000 "$SUMMARY"; } > "$body"
+        existing=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" --paginate --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -n 1)
+        if [ -n "$existing" ]; then
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$existing" -F "body=@$body" > /dev/null
+        else
+          gh api -X POST "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" -F "body=@$body" > /dev/null
+        fi
+
+    - name: Resultado
+      shell: bash
+      env:
+        CODE: ${{ steps.audit.outputs.exit-code }}
+      run: exit "${CODE:-2}"

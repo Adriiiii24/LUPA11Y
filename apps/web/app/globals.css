@@ -1,0 +1,424 @@
+@import 'tailwindcss';
+
+/*
+ * Fluid Optics · tokens.
+ *
+ * Un fondo zinc profundo y los dos colores del logo, muestreados de la imagen y suavizados para que
+ * no sean neón: el azul (lo interactivo y lo que se mide: foco, enlaces, fases, cajas sobre la
+ * captura) y el verde (progreso y gravedad: severidad, burbujas, ruta del teclado). Juntos, como en
+ * el logo, solo en el iris, los botones y las lentes de fondo. Tienen casi la misma luminosidad, así
+ * que nunca distinguen información por sí solos. El volumen sale de degradados radiales finos y de brillos
+ * interiores, nunca de bordes duros. La geometría es la de una lente: círculos, píldoras y radios
+ * extremos; no hay esquinas a 90 grados.
+ *
+ * Contrastes medidos (WCAG): texto 19:1 sobre el fondo y 17:1 sobre las superficies; texto
+ * secundario ≥ 7,9:1 en todas; verde 12:1 y azul 9,9:1 sobre el fondo (≥ 8,1:1 sobre las
+ * superficies); el botón en degradado azul→verde lleva texto oscuro a 13:1 en su extremo más bajo.
+ *
+ * La severidad es una rampa ordinal de un solo tono (validada: luminosidad monótona, saltos
+ * visibles y el extremo bajo a 4,6:1 sobre el fondo). Siempre va con su nombre: el tono nunca es
+ * la única pista.
+ */
+:root {
+  color-scheme: dark;
+  --bg: #09090b;
+  --raised: #111113;
+  --surface: #18181b;
+  --surface-2: #1f1f23;
+  --text: #fafafa;
+  --text-muted: #b4b4bc;
+  --iris: #6be35a;
+  --iris-strong: #c8f7b6;
+  --azure: #56c2f2;
+  --azure-strong: #bfeaff;
+  --azure-deep: #3b8fc4;
+  --cta: #9cf08a;
+  --cta-hover: #b8f5a8;
+  --cta-from: #8fdcf9;
+  --cta-hover-from: #b9ecfc;
+  --on-cta: #09090b;
+  --sev-low: #2f8a3c;
+  --sev-medium: #45b34f;
+  --sev-high: #6be35a;
+  --sev-critical: #c8f7b6;
+  /* La pupila de la lente y su borde. */
+  --pupil: #0b0d12;
+  --pupil-rim: #0c2c34;
+  --teal-shade: #1f8f7a;
+  /*
+   * Canales de los tintes, para usarlos con transparencia en clases y estilos en línea:
+   * rgb(var(--azure-rgb) / 0.4). Son los mismos colores de arriba; components/palette.ts los
+   * repite para SVG y la tarjeta de Open Graph, y un test comprueba que coinciden.
+   */
+  --azure-rgb: 86 194 242;
+  --azure-shade-rgb: 40 120 170;
+  --iris-rgb: 107 227 90;
+  --iris-shade-rgb: 69 179 79;
+  --sev-low-rgb: 47 138 60;
+  --teal-rgb: 78 210 180;
+  --teal-shade-rgb: 31 143 122;
+  --bg-rgb: 9 9 11;
+  --surface-rgb: 24 24 27;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raised: var(--raised);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-iris: var(--iris);
+  --color-iris-strong: var(--iris-strong);
+  --color-azure: var(--azure);
+  --color-azure-strong: var(--azure-strong);
+  --color-azure-deep: var(--azure-deep);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-on-cta: var(--on-cta);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --ease-lens: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* La luz del botón principal: el azul y el verde del logo, siempre con texto oscuro (≥ 13:1). */
+@utility bg-lens {
+  background-color: var(--cta);
+  background-image: linear-gradient(110deg, var(--cta-from), var(--cta));
+}
+@utility bg-lens-hover {
+  background-color: var(--cta-hover);
+  background-image: linear-gradient(110deg, var(--cta-hover-from), var(--cta-hover));
+}
+
+/* Brillo interior: el canto de una lente en lugar de un borde. */
+@utility shine {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    inset 0 0 0 1px rgb(255 255 255 / 0.055);
+}
+@utility shine-strong {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    inset 0 0 0 1px rgb(255 255 255 / 0.09),
+    0 24px 60px -32px rgb(0 0 0 / 0.9);
+}
+
+/* Esfera: luz arriba a la izquierda, un reflejo iris abajo y la superficie debajo. */
+@utility sphere {
+  background:
+    radial-gradient(120% 120% at 28% 18%, rgb(255 255 255 / 0.09), transparent 46%),
+    radial-gradient(80% 80% at 25% 110%, rgb(var(--azure-rgb) / 0.1), transparent 60%),
+    radial-gradient(80% 80% at 80% 110%, rgb(var(--iris-rgb) / 0.1), transparent 60%),
+    var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    inset 0 -18px 40px -24px rgb(0 0 0 / 0.8),
+    0 30px 70px -36px rgb(0 0 0 / 0.95);
+}
+
+/*
+ * La lente iris, como el logo: un iris que gira del azul al verde, una luz clara junto a la pupila,
+ * el canto oscurecido, la pupila y un brillo especular.
+ */
+@utility lens-iris {
+  background:
+    radial-gradient(circle at 34% 28%, rgb(255 255 255 / 0.55), transparent 16%),
+    radial-gradient(circle at 50% 52%, var(--pupil) 0 22%, transparent 23%),
+    radial-gradient(circle at 50% 52%, rgb(214 248 236 / 0.6) 0 24%, transparent 44%),
+    radial-gradient(circle at 50% 52%, transparent 52%, rgb(var(--bg-rgb) / 0.7) 76%),
+    conic-gradient(from 210deg at 50% 52%, var(--azure), var(--iris) 45%, var(--azure) 85%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.18),
+    inset 0 -6px 14px rgb(0 0 0 / 0.45),
+    0 0 0 6px rgb(var(--azure-rgb) / 0.06),
+    -6px 10px 30px -12px rgb(var(--azure-rgb) / 0.55),
+    6px 10px 30px -12px rgb(var(--iris-rgb) / 0.55);
+}
+
+/* El iris sin pupila: la pupila es una pieza aparte para poder dilatarla. */
+@utility iris-ring {
+  background:
+    radial-gradient(circle at 50% 50%, rgb(214 248 236 / 0.6) 0 26%, transparent 46%),
+    radial-gradient(circle at 50% 50%, transparent 52%, rgb(var(--bg-rgb) / 0.7) 76%),
+    conic-gradient(from 210deg, var(--azure), var(--iris) 45%, var(--azure) 85%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.18),
+    inset 0 -6px 14px rgb(0 0 0 / 0.45),
+    0 0 0 6px rgb(var(--azure-rgb) / 0.06),
+    -6px 10px 30px -12px rgb(var(--azure-rgb) / 0.55),
+    6px 10px 30px -12px rgb(var(--iris-rgb) / 0.55);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+    /* La cabecera flotante acaba a 80 px: cada ancla deja su título 24 px por debajo de ella. */
+    scroll-padding-top: 6.5rem;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: clip;
+    background: var(--bg);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(var(--azure-rgb) / 0.32);
+    color: var(--text);
+  }
+
+  input,
+  textarea {
+    caret-color: var(--azure);
+  }
+
+  /* Foco: un aro azul que sigue la curva del elemento (los navegadores actuales redondean el contorno). */
+  :focus-visible {
+    outline: 2px solid var(--azure);
+    outline-offset: 3px;
+  }
+
+  a {
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 1px;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.16) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Filas a sangre dentro de un contenedor con scroll: el aro va por dentro. */
+  .focus-inset:focus-visible {
+    outline-offset: -3px;
+  }
+
+  /*
+   * Contenedores con scroll: sus hijos posicionados tapan el contorno propio, así que el foco se pinta
+   * en un hermano superpuesto (.focus-ring) que sigue al contenedor (.peer).
+   */
+  .focus-ring {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 45;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: inset 0 0 0 2px var(--azure);
+  }
+  .peer:focus-visible ~ .focus-ring {
+    opacity: 1;
+  }
+  .peer.focus-quiet:focus-visible {
+    outline: none;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    background: linear-gradient(110deg, var(--cta-from), var(--cta));
+    color: var(--on-cta);
+    font-weight: 600;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus-visible {
+    transform: none;
+  }
+
+  /*
+   * Lentes de fondo: círculos translúcidos que se superponen en modo «pantalla», como la luz al
+   * cruzar dos cristales. Derivan muy despacio y solo transforman.
+   */
+  .backdrop-lens {
+    position: absolute;
+    border-radius: 9999px;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    will-change: transform;
+  }
+}
+
+/* --- Movimiento ------------------------------------------------------------------------------ */
+
+@keyframes drift-a {
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.04);
+  }
+}
+@keyframes drift-b {
+  50% {
+    transform: translate3d(-5%, 4%, 0) scale(0.97);
+  }
+}
+@keyframes drift-c {
+  50% {
+    transform: translate3d(3%, 5%, 0) scale(1.06);
+  }
+}
+
+/* Flotación de las burbujas: un vaivén corto, cada una con su periodo. */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, var(--float, -7px), 0);
+  }
+}
+
+/* La lente que audita late: crece un poco y su halo respira. */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+/* Entrada del primer pantallazo: cada línea sube desde su máscara. */
+@keyframes line-up {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* La ruta del teclado fluye: el trazo discontinuo avanza en la dirección del tabulador. */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: var(--flow, -48);
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.float-bubble {
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.enter-line {
+  display: block;
+  animation: line-up 900ms var(--ease-lens) var(--d, 0ms) both;
+}
+.enter {
+  animation: rise 900ms var(--ease-lens) var(--d, 0ms) both;
+}
+
+/* Al hacer scroll, cada bloque emerge; sin soporte de líneas de tiempo de scroll, ya está en su sitio. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+  }
+}
