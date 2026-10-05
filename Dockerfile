@@ -8,6 +8,10 @@
 #   docker run -p 3000:3000 -e LUPA11Y_SITE_URL=https://tu-dominio \
 #     -e LUPA11Y_CLIENT_IP_HEADER=fly-client-ip -v lupa11y-data:/data lupa11y-web
 #
+# Sin instrucción VOLUME: Railway la rechaza y cada plataforma monta el suyo. Sin volumen, los enlaces
+# permanentes se guardan dentro del contenedor y se pierden al redesplegar. En Railway, un volumen en
+# /data se monta como root: hace falta RAILWAY_RUN_UID=0 para escribir en él.
+#
 # Seguridad: la API audita solo hosts públicos y el navegador sale por el proxy que valida cada
 # conexión; aun así, conviene que la red del contenedor no alcance servicios internos.
 
@@ -45,7 +49,6 @@ RUN npx playwright install --with-deps chromium \
     && mkdir -p /data/reports \
     && chown -R node:node /data
 USER node
-VOLUME ["/data"]
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s \
   CMD node -e "fetch('http://127.0.0.1:' + (process.env.PORT || 3000) + '/robots.txt').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
