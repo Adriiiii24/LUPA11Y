@@ -89,8 +89,8 @@ La herramienta `audit_url` acepta `localhost` y devuelve Markdown con los diffs 
 **Versiones.** Los cambios de cada versión están en [CHANGELOG.md](CHANGELOG.md). La Action se usa por su etiqueta mayor, `@v0`, que se mueve a cada versión 0.x:
 
 ```bash
-git tag v0.2.0 && git push origin v0.2.0
-git tag -f v0 v0.2.0 && git push -f origin v0
+git tag vX.Y.Z && git push origin vX.Y.Z
+git tag -f v0 vX.Y.Z && git push -f origin v0
 ```
 
 ## Estructura

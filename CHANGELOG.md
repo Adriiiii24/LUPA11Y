@@ -4,10 +4,12 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Versione
 
 La GitHub Action se usa por su etiqueta mayor (`Adriiiii24/LupA11y@v0`), que siempre apunta a la última 0.x.
 
-## Sin publicar
+## [0.3.0] · 2026-10-07
+
+Sin cambios en el contrato (sigue en `schemaVersion` 2): los informes y las integraciones de la 0.2 funcionan igual.
 
 ### Añadido
-- **Despliegue en Vercel (plan gratuito)**: la API usa el Chromium de `@sparticuz/chromium`, de la misma versión mayor que el de Playwright (un test lo vigila), sin sus argumentos que relajan la seguridad web. El origen público sale de `VERCEL_PROJECT_PRODUCTION_URL` si no se declara `LUPA11Y_SITE_URL`.
+- **Despliegue en Vercel (plan gratuito)**: la web pública está en [lupa11y.vercel.app](https://lupa11y.vercel.app). La API usa el Chromium de `@sparticuz/chromium`, de la misma versión mayor que el de Playwright (un test lo vigila), sin sus argumentos que relajan la seguridad web. El origen público sale de `VERCEL_PROJECT_PRODUCTION_URL` si no se declara `LUPA11Y_SITE_URL`.
 - `createBrowserPool` acepta las opciones de arranque como función asíncrona.
 - `vercel.json` con un único servicio, la web, instalada desde la raíz del monorepo.
 - Un test de `test:web` arranca Playwright, axe y Gemini solo con los ficheros que traza la función `/api/audit`, que es lo que Vercel empaqueta.
@@ -16,9 +18,10 @@ La GitHub Action se usa por su etiqueta mayor (`Adriiiii24/LupA11y@v0`), que sie
 - El pool jubila el navegador en cuanto agota sus usos, no en la siguiente auditoría.
 - La muestra de la landing enseña la `/demo` del propio despliegue, no la de la máquina donde se generó.
 - El `Dockerfile` ya no declara `VOLUME` (Railway lo rechaza) ni lleva el Chromium de Vercel.
-- CI: los tipos de Next se generan antes del typecheck; `actions/cache` v6 y `upload-artifact` v7, que corren en Node 24.
+- CI: los tipos de Next se generan antes del typecheck, `upload-artifact` pasa a v7 y cada job tiene un límite de tiempo.
 
 ### Corregido
+- **Action**: la instalación de Chromium podía colgar el job hasta su límite de 6 horas si un mirror de Ubuntu no respondía. Ahora cada intento tiene 10 minutos y hay un segundo intento. La Action pasa también a `actions/cache` v6, que corre en Node 24.
 - En Vercel, la API fallaba al cargar: el trazado no incluía el `browsers.json` que Playwright lee al importarse.
 - En Vercel, el logo no se veía: `/_next/image` no llega a la app con servicios, así que se sirve sin optimizar.
 
@@ -68,4 +71,5 @@ La GitHub Action se usa por su etiqueta mayor (`Adriiiii24/LupA11y@v0`), que sie
 - Política de red con protección contra SSRF y modo de solo lectura durante el recorrido con teclado.
 - Landing con la auditoría real de una demo rota a propósito.
 
-[0.2.0]: https://github.com/Adriiiii24/LupA11y/releases/tag/v0.2.0
+[0.3.0]: https://github.com/Adriiiii24/LUPA11Y/releases/tag/v0.3.0
+[0.2.0]: https://github.com/Adriiiii24/LUPA11Y/releases/tag/v0.2.0

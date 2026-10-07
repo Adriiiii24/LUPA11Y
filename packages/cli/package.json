@@ -1,6 +1,6 @@
 {
   "name": "@lupa11y/cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "CLI de LupA11y: audita una URL y falla por encima de una severidad. La usa la GitHub Action.",

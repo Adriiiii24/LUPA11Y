@@ -1,6 +1,6 @@
 {
   "name": "@lupa11y/mcp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Servidor MCP de LupA11y: la herramienta audit_url para Claude Code, Cursor y cualquier cliente MCP.",
