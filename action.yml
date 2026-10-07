@@ -102,12 +102,17 @@ runs:
       working-directory: ${{ github.action_path }}
       env:
         CACHE_HIT: ${{ steps.chromium-cache.outputs.cache-hit }}
+      # apt depende de los mirrors de Ubuntu, que a veces no responden: cada intento tiene un límite de
+      # 10 minutos y hay un segundo intento, en vez de dejar el job colgado hasta su límite de 6 horas.
       run: |
-        if [ "$CACHE_HIT" = "true" ]; then
-          npx playwright install-deps chromium
-        else
-          npx playwright install --with-deps chromium
-        fi
+        cmd=(npx playwright install --with-deps chromium)
+        [ "$CACHE_HIT" = "true" ] && cmd=(npx playwright install-deps chromium)
+        for attempt in 1 2; do
+          timeout 600 "${cmd[@]}" && exit 0
+          echo "::warning::La instalación de Chromium no terminó (intento $attempt de 2)."
+        done
+        echo "::error::No se pudo instalar Chromium: los repositorios de paquetes de Ubuntu no responden."
+        exit 1
 
     - name: Auditar
       id: audit
