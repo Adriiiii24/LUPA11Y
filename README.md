@@ -82,7 +82,7 @@ La herramienta `audit_url` acepta `localhost` y devuelve Markdown con los diffs 
 
 **Paquetes publicables.** `npm run pack:packages` deja en `.pack/` los tres paquetes compilados (`@lupa11y/core`, `@lupa11y/cli` con el binario `lupa11y`, `@lupa11y/mcp` con `lupa11y-mcp`) y verifica que se instalan desde sus tarballs y arrancan. Publicarlos es `npm publish .pack/<paquete>`.
 
-**Despliegue.** En **Vercel** (plan gratuito) basta con importar el repositorio con `apps/web` como directorio raíz: la landing se sirve estática y la API usa el Chromium de `@sparticuz/chromium`. Allí los enlaces permanentes quedan desactivados, porque el disco no persiste. El [`Dockerfile`](Dockerfile) construye la web con su Chromium para un contenedor de larga vida (Fly.io, Cloud Run, un VPS…), en modo `public-only` y con un volumen en `/data` para los enlaces permanentes.
+**Despliegue.** En **Vercel** (plan gratuito) basta con importar el repositorio: [`vercel.json`](vercel.json) declara un único servicio, la web de `apps/web`, instalada desde la raíz del monorepo. La landing se sirve estática y la API usa el Chromium de `@sparticuz/chromium`. Allí los enlaces permanentes quedan desactivados, porque el disco no persiste. El [`Dockerfile`](Dockerfile) construye la web con su Chromium para un contenedor de larga vida (Fly.io, Cloud Run, un VPS…), en modo `public-only` y con un volumen en `/data` para los enlaces permanentes.
 
 **Versiones.** Los cambios de cada versión están en [CHANGELOG.md](CHANGELOG.md). La Action se usa por su etiqueta mayor, `@v0`, que se mueve a cada versión 0.x:
 
