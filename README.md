@@ -4,6 +4,8 @@
 
 LupA11y audita la accesibilidad real de una URL. Cada hallazgo sale en un JSON estricto, con su selector, su recorte y un diff de corrección.
 
+**Pruébalo en [lupa11y.vercel.app](https://lupa11y.vercel.app):** pega una URL y mira la auditoría en directo.
+
 1. **axe-core** dentro de Chromium (Playwright): reglas WCAG 2.2 A y AA, con los mensajes en español.
 2. **Zoom y espaciado:** la página a 320 px de ancho (un zoom del 400 %) y con el espaciado de texto de WCAG 1.4.12. Mide qué bloques obligan a desplazarse en horizontal y qué textos quedan recortados.
 3. **Agente de teclado:** pulsa `Tab` de verdad, traza el orden del foco y mide píxel a píxel si el foco se ve. También detecta trampas de teclado, focos tapados por capas fijas y controles que no responden a `Enter`. El rol y el nombre de cada parada salen del árbol de accesibilidad de Chromium: lo que anuncia un lector de pantalla.
