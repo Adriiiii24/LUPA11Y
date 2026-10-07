@@ -5,8 +5,11 @@ const config: NextConfig = {
   transpilePackages: ['@lupa11y/core'],
   // Playwright y axe leen ficheros propios en tiempo de ejecución: no se empaquetan.
   serverExternalPackages: ['playwright', 'playwright-core', '@axe-core/playwright', 'axe-core', '@google/genai', '@sparticuz/chromium'],
-  // El Chromium de Vercel va comprimido en bin/ y se lee en tiempo de ejecución: el trazado no lo ve solo.
-  outputFileTracingIncludes: { '/api/audit': ['../../node_modules/@sparticuz/chromium/bin/**'] },
+  // Ficheros que se leen en tiempo de ejecución con rutas que el trazado no ve: el Chromium de Vercel
+  // (comprimido en bin/) y el browsers.json que Playwright carga al importarse.
+  outputFileTracingIncludes: {
+    '/api/audit': ['../../node_modules/@sparticuz/chromium/bin/**', '../../node_modules/playwright-core/browsers.json'],
+  },
   poweredByHeader: false,
   async rewrites() {
     return [{ source: '/demo', destination: '/demo/index.html' }];

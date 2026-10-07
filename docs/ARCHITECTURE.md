@@ -195,7 +195,7 @@ La cuota vive en memoria. Frena el abuso en la demo, pero no sirve como cuota en
 - **MCP de verdad:** el servidor por stdio con el cliente oficial del SDK, progreso, salida estructurada y la comparación con la auditoría anterior.
 - **Web, unitarias:** lector NDJSON, informe provisional, puerta de la API, imágenes, almacén, estado de vista y la coherencia de la paleta con `globals.css`.
 
-`npm run test:web` arranca el build de producción y lo usa con Playwright: peso de la landing, robots, sitemap y tarjeta, la demo con sus imágenes, axe sobre la propia interfaz (estado inicial, un hallazgo abierto, resultados y un informe guardado), un error de la API y una auditoría real en directo que comprueba que la ventana no se mueve, que un Enter de más no la cancela, que la segunda dice qué cambió y que el enlace permanente funciona.
+`npm run test:web` arranca el build de producción y lo usa con Playwright: peso de la landing, robots, sitemap y tarjeta, la demo con sus imágenes, axe sobre la propia interfaz (estado inicial, un hallazgo abierto, resultados y un informe guardado), un error de la API y una auditoría real en directo que comprueba que la ventana no se mueve, que un Enter de más no la cancela, que la segunda dice qué cambió y que el enlace permanente funciona. Además copia a un directorio aparte solo los ficheros que traza la función `/api/audit` (lo que Vercel empaqueta) y arranca con ellos Chromium, axe y Gemini.
 
 La CI, además, se audita a sí misma con la propia Action, construye y arranca la imagen de Docker y comprueba que los paquetes se pueden publicar.
 
