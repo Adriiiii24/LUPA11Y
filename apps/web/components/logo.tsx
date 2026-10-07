@@ -4,10 +4,11 @@ import { PALETTE } from './palette';
 
 /**
  * La marca: dos lentes que se funden en una lupa (imagen proporcionada por el autor). Es decorativa:
- * el nombre «LupA11y» va siempre al lado en texto.
+ * el nombre «LupA11y» va siempre al lado en texto. Se sirve sin el optimizador (`/_next/image`), que
+ * en Vercel con servicios no llega a la app; el PNG ya es pequeño (128 px, 20 KB).
  */
 export function LogoMark({ size = 32, className = '', priority = false }: { size?: number; className?: string; priority?: boolean }) {
-  return <Image src={mark} alt="" width={size} height={size} priority={priority} className={`shrink-0 select-none ${className}`} draggable={false} />;
+  return <Image src={mark} alt="" width={size} height={size} priority={priority} unoptimized className={`shrink-0 select-none ${className}`} draggable={false} />;
 }
 
 /** Aviso: una lente con la exclamación. Siempre va con su texto al lado. */
