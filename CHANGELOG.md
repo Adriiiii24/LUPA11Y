@@ -4,6 +4,17 @@ Formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Versione
 
 La GitHub Action se usa por su etiqueta mayor (`Adriiiii24/LupA11y@v0`), que siempre apunta a la última 0.x.
 
+## [Sin publicar]
+
+Sin cambios en el contrato (sigue en `schemaVersion` 2).
+
+### Añadido
+- Regla `layout:text-spacing-hidden` (severidad baja, pendiente de revisión): el espaciado de WCAG 1.4.12 recorta un texto que solo lleva `aria-hidden`. Puede ser decorativo o la cara visible de un dato; antes se informaba como fallo de severidad media.
+
+### Corregido
+- **Agente de teclado**: con un campo con `autofocus`, el recorrido empezaba en ese campo y se saltaba todo lo anterior (con el campo al final de la página, no encontraba ninguna parada). Ahora rebobina el Tab al principio del documento antes de empezar, respetando los `tabindex` positivos.
+- **Espaciado del texto**: la nota citaba todo el texto de la caja recortada, no el que se corta.
+
 ## [0.3.0] · 2026-10-07
 
 Sin cambios en el contrato (sigue en `schemaVersion` 2): los informes y las integraciones de la 0.2 funcionan igual.

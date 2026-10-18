@@ -50,10 +50,16 @@ export interface ReflowMeasurement {
 export interface ClippedText {
   selector: string;
   html: string;
+  /** El texto que se corta, no todo el del contenedor. */
   text: string;
   /** Px de contenido que dejan de verse en horizontal y en vertical. */
   lostX: number;
   lostY: number;
+  /**
+   * Todo lo que se corta lleva aria-hidden. Puede ser decorativo (una palabra gigante de fondo) o la
+   * versión visible de un dato que el lector recibe por otro lado: sin mirarlo no se sabe.
+   */
+  hidden: boolean;
   rect: Rect;
 }
 
@@ -439,19 +445,29 @@ export function pageRuntime(command: Command): unknown {
         const bottom = top + element.clientHeight;
         let lostX = 0;
         let lostY = 0;
+        const lostTexts: string[] = [];
+        let hidden = true;
         const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
         for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-          if (!node.textContent?.trim() || !node.parentElement || !isRendered(node.parentElement)) continue;
-          let owner: Element | null = node.parentElement;
+          const parent = node.parentElement;
+          if (!node.textContent?.trim() || !parent || !isRendered(parent)) continue;
+          let owner: Element | null = parent;
           while (owner && owner !== element && !confines(owner)) owner = owner.parentElement;
           if (owner !== element) continue;
           const range = document.createRange();
           range.selectNodeContents(node);
+          let lost = 0;
           for (const rect of range.getClientRects()) {
             if (rect.width === 0 || rect.height === 0) continue;
-            if (clipsX) lostX = Math.max(lostX, rect.right - right, left - rect.left);
-            if (clipsY) lostY = Math.max(lostY, rect.bottom - bottom, top - rect.top);
+            const x = clipsX ? Math.max(rect.right - right, left - rect.left) : 0;
+            const y = clipsY ? Math.max(rect.bottom - bottom, top - rect.top) : 0;
+            lostX = Math.max(lostX, x);
+            lostY = Math.max(lostY, y);
+            lost = Math.max(lost, x, y);
           }
+          if (lost <= 2) continue;
+          lostTexts.push(node.textContent);
+          if (!parent.closest('[aria-hidden="true"]')) hidden = false;
         }
         lostX = Math.round(lostX);
         lostY = Math.round(lostY);
@@ -459,9 +475,10 @@ export function pageRuntime(command: Command): unknown {
         found.push({
           selector: selectorFor(element),
           html: element.outerHTML.slice(0, 600),
-          text: collapse(element.innerText, 120),
+          text: collapse(lostTexts.join(' '), 120) || collapse(element.innerText, 120),
           lostX,
           lostY,
+          hidden: hidden && lostTexts.length > 0,
           rect: documentRect(element),
         });
       }

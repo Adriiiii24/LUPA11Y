@@ -7,6 +7,9 @@
  *    partida tras el blur, así que el siguiente Tab sigue donde estaba.
  * 3. Compara los dos recortes píxel a píxel (WCAG 2.4.7 y 2.4.13) y comprueba si otra capa tapa el foco (2.4.11).
  *
+ * Antes del primer Tab, el recorrido vuelve al principio del documento: si la página puso el foco en
+ * un campo al cargar (autofocus), no puede empezar a mitad y saltarse lo anterior.
+ *
  * El ciclo se cierra cuando el foco sale del documento. Si vuelve a una parada ya vista sin salir,
  * hay un bucle: dentro de un diálogo modal es lo esperado; fuera, se prueba Escape y Shift+Tab
  * antes de declarar una trampa (2.1.2).
@@ -215,6 +218,44 @@ async function captureFocus(
     (): TabStop['focus'] => UNMEASURED,
   );
   return { pair: { unfocused, focused }, focus };
+}
+
+/** Tabs como máximo para sacar el foco del documento antes del recorrido. */
+const REWIND_LIMIT = 10;
+
+/**
+ * Devuelve el Tab al principio del documento, como al llegar desde la barra de direcciones.
+ *
+ * Un blur no basta: Chromium recuerda dónde estaba el foco y el siguiente Tab sigue desde ahí. Enfocar
+ * algo al principio tampoco: desde un elemento fuera del orden de tabulación, Chromium sigue el orden
+ * del DOM y se salta los tabindex positivos. Lo que funciona es salir del documento desde el final del
+ * orden: se enfoca un marcador con tabindex 0 al final del body y un Tab saca el foco; el siguiente
+ * entra por el primer elemento. Si algo va detrás del marcador (contenido fuera del body, un diálogo
+ * modal que no deja enfocarlo), se sigue pulsando hasta que el foco sale.
+ */
+async function rewindTabOrder(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    const marker = document.createElement('span');
+    marker.tabIndex = 0;
+    marker.setAttribute('data-lupa11y-rewind', '');
+    // Fuera del flujo: no puede mover nada de una rejilla o un flex mientras exista.
+    marker.style.cssText = 'position:fixed;top:0;left:0;width:0;height:0;overflow:hidden';
+    (document.body ?? document.documentElement).append(marker);
+    marker.focus({ preventScroll: true });
+  });
+  try {
+    for (let press = 0; press < REWIND_LIMIT; press += 1) {
+      await page.keyboard.press('Tab');
+      const active = await deepActive(page);
+      if (!active) return;
+      await active.handle.dispose();
+    }
+  } finally {
+    await page.evaluate(() => {
+      document.querySelector('[data-lupa11y-rewind]')?.remove();
+      window.scrollTo(0, 0);
+    });
+  }
 }
 
 /** Tras detectar un bucle: ¿sacan el foco Escape o Shift+Tab? */
@@ -511,10 +552,6 @@ export function weakFocusFindings(
 
 export async function runKeyboardPhase(page: Page, guard: RequestGuard, lab: PixelLab, options: KeyboardOptions): Promise<KeyboardPhaseResult> {
   const { maxStops, viewport, signal, log } = options;
-  await page.evaluate(() => {
-    (document.activeElement as HTMLElement | null)?.blur();
-    window.scrollTo(0, 0);
-  });
   guard.setReadOnly(true);
   // Sin sesión CDP (otro navegador, un fallo) el rol y el nombre salen del runtime.
   const cdp = await page.context().newCDPSession(page).catch(() => null);
@@ -527,6 +564,7 @@ export async function runKeyboardPhase(page: Page, guard: RequestGuard, lab: Pix
   let keptHandles = 0;
 
   try {
+    await rewindTabOrder(page);
     for (let press = 0; press < maxStops; press += 1) {
       signal.throwIfAborted();
       await page.keyboard.press('Tab');
