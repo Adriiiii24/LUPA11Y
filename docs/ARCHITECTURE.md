@@ -65,12 +65,13 @@ Ejecuta `@axe-core/playwright` con el locale español inyectado en el propio `ax
 Lo que pasa cuando alguien amplía la página o separa el texto. Cambia la ventana y añade una hoja de estilos, y al terminar deja las dos como estaban, pase lo que pase.
 
 - **WCAG 1.4.10, reflujo.** La ventana pasa a 320 px de ancho (un zoom del 400 % sobre 1280 px). Se buscan los elementos que se salen por los lados, salvo lo que la norma exceptúa (tablas, código, vídeo, mapas, contenido con su propio desplazamiento horizontal). Se agrupan por el bloque del que se salen, que es donde va el arreglo, y para cada bloque se propone un CSS según su tipo: `flex-wrap: wrap` para una fila flex, una rejilla `auto-fit` para un grid y `max-width: 100%` para el resto. El recorte enseña el bloque a 320 px con lo que se sale. Las cajas se vuelven a medir en el diseño normal para pintarlas sobre la captura de 1280 px.
-- **WCAG 1.4.12, espaciado del texto.** Se aplica, como hoja adoptada (no depende de la CSP de la página), el espaciado del marcador de prueba de WCAG: interlineado 1,5, letras a 0,12 em, palabras a 0,16 em y párrafos a 2 em. Se mide el propio texto: los recuadros de línea que quedan fuera de una caja con `overflow: hidden` o `clip`. Solo cuenta el texto que el espaciado recorta y la página no recortaba ya; lo que se puede desplazar no se pierde, y una imagen decorativa que se sale no es texto.
+- **WCAG 1.4.12, espaciado del texto.** Se aplica, como hoja adoptada (no depende de la CSP de la página), el espaciado del marcador de prueba de WCAG: interlineado 1,5, letras a 0,12 em, palabras a 0,16 em y párrafos a 2 em. Se mide el propio texto: los recuadros de línea que quedan fuera de una caja con `overflow: hidden` o `clip`. Solo cuenta el texto que el espaciado recorta y la página no recortaba ya; lo que se puede desplazar no se pierde, y una imagen decorativa que se sale no es texto. La nota cita el texto que se corta, no todo el de la caja. Si todo lo que se corta lleva `aria-hidden`, el hallazgo es otro, de severidad baja y pendiente de revisión (`text-spacing-hidden`): puede ser decoración (una palabra gigante de fondo) o la cara visible de un dato que el lector recibe por otro lado, y eso solo lo decide una persona.
 
 ### Agente de teclado
 
 ```text
-blur + scroll arriba · modo solo lectura
+modo solo lectura
+rebobinar: marcador con tabindex 0 al final del body → Tab hasta que el foco sale → quitar marcador · scroll arriba
 repetir hasta 60 veces:
   Tab
   activo = elemento activo real (atraviesa shadow roots e iframes, también de otro origen)
@@ -90,6 +91,7 @@ después: Enter o Espacio sobre los mismos nodos no nativos → ¿cambia algo? (
 
 Decisiones no obvias:
 
+- **Rebobinar antes del primer Tab.** Un blur no basta: Chromium recuerda dónde estaba el foco y el siguiente Tab sigue desde ahí, así que con un campo con `autofocus` el recorrido empezaba a mitad de página y se saltaba lo anterior (o, con el campo al final, no encontraba ninguna parada). Enfocar algo al principio tampoco sirve: desde un elemento fuera del orden de tabulación, Chromium sigue el orden del DOM y se salta los `tabindex` positivos. Lo que funciona es salir del documento desde el final del orden: con un marcador `tabindex="0"` al final del `<body>`, un Tab saca el foco y el siguiente entra por el primer elemento, como al llegar desde la barra de direcciones.
 - **Identidad de cada parada.** Un id que vive en la propia página (un `WeakMap` por documento) y no el selector: una clase de estado o un hermano nuevo cambian el selector, pero no el nodo. Los controles que luego se prueban con Enter se conservan como `ElementHandle`, sin volver a buscarlos.
 - **Rol y nombre reales.** Se leen del árbol de accesibilidad de Chromium con `Accessibility.getPartialAXTree`: lo que anuncia un lector de pantalla, con el cálculo del nombre accesible completo. Dentro de iframes vale la aproximación del runtime.
 - **Devolver el foco tras el blur.** Sin eso, el siguiente Tab lo recibe `<body>` y los manejadores de teclado del componente no se ejecutan nunca. Las trampas de foco hechas con `keydown` pasarían desapercibidas.
@@ -190,7 +192,7 @@ La cuota vive en memoria. Frena el abuso en la demo, pero no sirve como cuota en
 
 - **Unitarias del motor:** color, diff, edición de HTML, política de red, comparación y huellas, SARIF, migración del esquema, Markdown por lotes y las tareas de visión con un doble del modelo.
 - **Red con Chromium real:** las cabeceras no salen del origen auditado, el proxy se conecta a la IP que validó (con un dominio que no existe en ningún DNS) y rechaza la red local, y el pool reutiliza y jubila navegadores.
-- **Extremo a extremo del motor:** la demo servida en local con Gemini sustituido por un doble inyectable: las cinco fases, los eventos parciales, la visión en paralelo, el reflujo y el espaciado, los roles del árbol de accesibilidad y los errores saneados.
+- **Extremo a extremo del motor:** la demo servida en local con Gemini sustituido por un doble inyectable: las cinco fases, los eventos parciales, la visión en paralelo, el reflujo y el espaciado, los roles del árbol de accesibilidad y los errores saneados. Aparte, páginas mínimas para los casos límite: un `autofocus` al final o a mitad (con un `tabindex` positivo) y un texto decorativo con `aria-hidden` que el espaciado recorta.
 - **CLI de verdad:** códigos de salida, JSON, SARIF y Markdown, línea base, varias páginas y sitemap.
 - **MCP de verdad:** el servidor por stdio con el cliente oficial del SDK, progreso, salida estructurada y la comparación con la auditoría anterior.
 - **Web, unitarias:** lector NDJSON, informe provisional, puerta de la API, imágenes, almacén, estado de vista y la coherencia de la paleta con `globals.css`.

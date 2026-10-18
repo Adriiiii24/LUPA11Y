@@ -194,33 +194,60 @@ export async function runLayoutPhase(
     await runtime.spacing(frame, false).catch(() => null);
     await settle(page, 50);
   }
+  const hiddenCount = clipped.filter((c) => c.hidden).length;
   log(
     clipped.length > 0
-      ? `Con el espaciado de WCAG 1.4.12, ${clipped.length} ${clipped.length === 1 ? 'bloque recorta' : 'bloques recortan'} su texto.`
+      ? `Con el espaciado de WCAG 1.4.12, ${clipped.length} ${clipped.length === 1 ? 'bloque recorta' : 'bloques recortan'} su texto${
+          hiddenCount > 0 ? ` (${hiddenCount} solo texto con aria-hidden, pendiente de revisión)` : ''
+        }.`
       : 'Con el espaciado de WCAG 1.4.12 no se recorta ningún texto.',
   );
 
   if (clipped.length > 0) {
     const rects = await rectsAtNormalLayout(page, clipped.map((c) => c.selector));
-    findings.push(
-      finding({
-        source: 'layout',
-        rule: 'text-spacing',
-        title: 'Al separar el texto, una caja de tamaño fijo lo recorta',
-        detail:
-          'Con el interlineado, el espacio entre letras y el espacio entre palabras que exige WCAG 1.4.12 (los que aplican quienes leen con dislexia o baja visión), parte del texto deja de verse porque su caja tiene un alto o un ancho fijos y oculta lo que sobra.',
-        severity: 'medium',
-        wcag: [wcag('1.4.12', 'AA')],
-        nodes: clipped.map((clip, i) => ({
-          selector: clip.selector,
-          html: clip.html,
-          rect: rects[i] ?? clip.rect,
-          note: `«${clip.text}»: se dejan de ver ${Math.max(clip.lostX, clip.lostY)} px ${clip.lostX >= clip.lostY ? 'a lo ancho' : 'a lo alto'}.`,
-          evidence: { crop: crops.get(clip.selector) ?? null },
-          fix: spacingFix(clip),
-        })),
-      }),
-    );
+    const nodes = clipped.map((clip, i) => ({
+      hidden: clip.hidden,
+      node: {
+        selector: clip.selector,
+        html: clip.html,
+        rect: rects[i] ?? clip.rect,
+        note: `«${clip.text}»: se dejan de ver ${Math.max(clip.lostX, clip.lostY)} px ${clip.lostX >= clip.lostY ? 'a lo ancho' : 'a lo alto'}.`,
+        evidence: { crop: crops.get(clip.selector) ?? null },
+        fix: spacingFix(clip),
+      } satisfies NodeInput,
+    }));
+    const shown = nodes.filter((n) => !n.hidden).map((n) => n.node);
+    const hidden = nodes.filter((n) => n.hidden).map((n) => n.node);
+    if (shown.length > 0) {
+      findings.push(
+        finding({
+          source: 'layout',
+          rule: 'text-spacing',
+          title: 'Al separar el texto, una caja de tamaño fijo lo recorta',
+          detail:
+            'Con el interlineado, el espacio entre letras y el espacio entre palabras que exige WCAG 1.4.12 (los que aplican quienes leen con dislexia o baja visión), parte del texto deja de verse porque su caja tiene un alto o un ancho fijos y oculta lo que sobra.',
+          severity: 'medium',
+          wcag: [wcag('1.4.12', 'AA')],
+          nodes: shown,
+        }),
+      );
+    }
+    // Un texto con aria-hidden no llega al lector, pero se ve: puede ser decoración (no se pierde
+    // contenido) o la cara visible de un dato. Lo decide una persona, como el foco débil sin visión.
+    if (hidden.length > 0) {
+      findings.push(
+        finding({
+          source: 'layout',
+          rule: 'text-spacing-hidden',
+          title: 'Al separar el texto se recorta un texto oculto a los lectores de pantalla (pendiente de revisión)',
+          detail:
+            'El texto que deja de verse lleva aria-hidden. Si es decorativo (un logotipo, una palabra gigante de fondo), no se pierde contenido. Si es la versión visible de un dato que el lector de pantalla recibe por otro lado, quien lee con el espaciado de WCAG 1.4.12 sí lo pierde.',
+          severity: 'low',
+          wcag: [wcag('1.4.12', 'AA')],
+          nodes: hidden,
+        }),
+      );
+    }
   }
 
   return { findings, scrollWidth, clipped: clipped.length };
